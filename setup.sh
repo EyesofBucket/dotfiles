@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# sh -c "$(curl -fsSL https://raw.github.com/eyesofBucket/configs/main/setup.sh)" ""
+
 # Requirements
 # - curl
 # - wget
@@ -29,4 +31,5 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.c
 vim -c "PlugInstall" -c "qa"
 
 # Add config files
-cp -r ./dotfiles/.* $HOME/
+wget https://raw.github.com/eyesofBucket/configs/main/dotfiles/.zshrc -o ~/.zshrc
+wget https://raw.github.com/eyesofBucket/configs/main/dotfiles/.vimrc -o ~/.vimrc
