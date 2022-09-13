@@ -113,6 +113,7 @@ alias pubip='curl ifconfig.io'
 alias pm='podman'
 alias pmi='podman image'
 alias pml='podman logs'
+alias pmp='podman pod'
 
 alias pps="podman ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}' -a | (read -r; printf "%s\n" "$REPLY"; sort)"
 alias ppq="podman ps --format 'table {{.Names}}\t{{.Status}}' -a | (read -r; printf "%s\n" "$REPLY"; sort)"
@@ -133,6 +134,7 @@ alias pnd="podman network disconnect"
 alias spm='sudo podman'
 alias spmi='sudo podman image'
 alias spml='sudo podman logs'
+alias spmp='sudo podman pod'
 
 alias spps="sudo podman ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}' -a | (read -r; printf "%s\n" "$REPLY"; sort)"
 alias sppq="sudo podman ps --format 'table {{.Names}}\t{{.Status}}' -a | (read -r; printf "%s\n" "$REPLY"; sort)"
