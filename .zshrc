@@ -114,40 +114,40 @@ alias pm='podman'
 alias pmi='podman image'
 alias pml='podman logs'
 
-alias pmps="podman ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}' -a | (read -r; printf "%s\n" "$REPLY"; sort)"
-alias pmpq="podman ps --format 'table {{.Names}}\t{{.Status}}' -a | (read -r; printf "%s\n" "$REPLY"; sort)"
-alias pmpa="podman ps --format 'table {{.Names}}\t{{.Status}}\t{{.Networks}}\t{{.Ports}}\t{{.Image}}' -a | (read -r; printf "%s\n" "$REPLY"; sort)"
+alias pps="podman ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}' -a | (read -r; printf "%s\n" "$REPLY"; sort)"
+alias ppq="podman ps --format 'table {{.Names}}\t{{.Status}}' -a | (read -r; printf "%s\n" "$REPLY"; sort)"
+alias ppa="podman ps --format 'table {{.Names}}\t{{.Status}}\t{{.Networks}}\t{{.Ports}}\t{{.Image}}' -a | (read -r; printf "%s\n" "$REPLY"; sort)"
 
-alias pmin="podman inspect"
+alias pin="podman inspect"
 alias pms="podman start"
 alias pmx="podman stop"
 alias pmr="podman restart"
 
 alias pmn="podman network"
-alias pmni="podman network inspect"
-alias pmnl="podman network ls"
-alias pmnc="podman network connect"
-alias pmnd="podman network disconnect"
+alias pni="podman network inspect"
+alias pnl="podman network ls"
+alias pnc="podman network connect"
+alias pnd="podman network disconnect"
 
 # sudo podman
-alias pm='sudo podman'
-alias pmi='sudo podman image'
-alias pml='sudo podman logs'
+alias spm='sudo podman'
+alias spmi='sudo podman image'
+alias spml='sudo podman logs'
 
-alias pmps="sudo podman ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}' -a | (read -r; printf "%s\n" "$REPLY"; sort)"
-alias pmpq="sudo podman ps --format 'table {{.Names}}\t{{.Status}}' -a | (read -r; printf "%s\n" "$REPLY"; sort)"
-alias pmpa="sudo podman ps --format 'table {{.Names}}\t{{.Status}}\t{{.Networks}}\t{{.Ports}}\t{{.Image}}' -a | (read -r; printf "%s\n" "$REPLY"; sort)"
+alias spps="sudo podman ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}' -a | (read -r; printf "%s\n" "$REPLY"; sort)"
+alias sppq="sudo podman ps --format 'table {{.Names}}\t{{.Status}}' -a | (read -r; printf "%s\n" "$REPLY"; sort)"
+alias sppa="sudo podman ps --format 'table {{.Names}}\t{{.Status}}\t{{.Networks}}\t{{.Ports}}\t{{.Image}}' -a | (read -r; printf "%s\n" "$REPLY"; sort)"
 
-alias pmin="sudo podman inspect"
-alias pms="sudo podman start"
-alias pmx="sudo podman stop"
-alias pmr="sudo podman restart"
+alias spin="sudo podman inspect"
+alias spms="sudo podman start"
+alias spmx="sudo podman stop"
+alias spmr="sudo podman restart"
 
-alias pmn="sudo podman network"
-alias pmni="sudo podman network inspect"
-alias pmnl="sudo podman network ls"
-alias pmnc="sudo podman network connect"
-alias pmnd="sudo podman network disconnect"
+alias spmn="sudo podman network"
+alias spni="sudo podman network inspect"
+alias spnl="sudo podman network ls"
+alias spnc="sudo podman network connect"
+alias spnd="sudo podman network disconnect"
 
 # docker
 alias dc='docker-compose'
