@@ -9,7 +9,7 @@ export ZSH=$HOME/.oh-my-zsh
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 
-eval "$(oh-my-posh init zsh --config ~/.poshthemes/wholespace.omp.json)"
+eval "$(oh-my-posh init zsh --config ~/.poshthemes/montys.omp.json)"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
