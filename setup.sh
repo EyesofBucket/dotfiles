@@ -31,5 +31,5 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.c
 vim -c "PlugInstall" -c "qa"
 
 # Add config files
-wget https://raw.github.com/eyesofBucket/configs/main/dotfiles/.zshrc -O ~/.zshrc
-wget https://raw.github.com/eyesofBucket/configs/main/dotfiles/.vimrc -O ~/.vimrc
+wget https://raw.github.com/eyesofBucket/configs/main/dotfiles/.zshrc -O ~/.zshrc -nv
+wget https://raw.github.com/eyesofBucket/configs/main/dotfiles/.vimrc -O ~/.vimrc -nv
