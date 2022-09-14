@@ -115,9 +115,9 @@ alias pmi='podman image'
 alias pml='podman logs'
 alias pmp='podman pod'
 
-alias pps="podman ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}' -a | (read -r; printf "%s\n" "$REPLY"; sort)"
-alias ppq="podman ps --format 'table {{.Names}}\t{{.Status}}' -a | (read -r; printf "%s\n" "$REPLY"; sort)"
-alias ppa="podman ps --format 'table {{.Names}}\t{{.Status}}\t{{.Networks}}\t{{.Ports}}\t{{.Image}}' -a | (read -r; printf "%s\n" "$REPLY"; sort)"
+alias pps="podman ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}' -a | (read -r; printf "%s" "$REPLY"; sort)"
+alias ppq="podman ps --format 'table {{.Names}}\t{{.Status}}' -a | (read -r; printf "%s" "$REPLY"; sort)"
+alias ppa="podman ps --format 'table {{.Names}}\t{{.Status}}\t{{.Networks}}\t{{.Ports}}\t{{.Image}}' -a | (read -r; printf "%s" "$REPLY"; sort)"
 
 alias pin="podman inspect"
 alias pms="podman start"
@@ -136,9 +136,9 @@ alias spmi='sudo podman image'
 alias spml='sudo podman logs'
 alias spmp='sudo podman pod'
 
-alias spps="sudo podman ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}' -a | (read -r; printf "%s\n" "$REPLY"; sort)"
-alias sppq="sudo podman ps --format 'table {{.Names}}\t{{.Status}}' -a | (read -r; printf "%s\n" "$REPLY"; sort)"
-alias sppa="sudo podman ps --format 'table {{.Names}}\t{{.Status}}\t{{.Networks}}\t{{.Ports}}\t{{.Image}}' -a | (read -r; printf "%s\n" "$REPLY"; sort)"
+alias spps="sudo podman ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}' -a | (read -r; printf "%s" "$REPLY"; sort)"
+alias sppq="sudo podman ps --format 'table {{.Names}}\t{{.Status}}' -a | (read -r; printf "%s" "$REPLY"; sort)"
+alias sppa="sudo podman ps --format 'table {{.Names}}\t{{.Status}}\t{{.Networks}}\t{{.Ports}}\t{{.Image}}' -a | (read -r; printf "%s" "$REPLY"; sort)"
 
 alias spin="sudo podman inspect"
 alias spms="sudo podman start"
@@ -160,9 +160,9 @@ alias dk='docker'
 alias di='docker image'
 alias dl='docker logs'
 
-alias dps="docker ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}' -a | (read -r; printf "%s\n" "$REPLY"; sort)"
-alias dpq="docker ps --format 'table {{.Names}}\t{{.Status}}' -a | (read -r; printf "%s\n" "$REPLY"; sort)"
-alias dpa=" docker ps --format 'table {{.Names}}\t{{.Status}}\t{{.Networks}}\t{{.Ports}}\t{{.Image}}' -a | (read -r; printf "%s\n" "$REPLY"; sort)"
+alias dps="docker ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}' -a | (read -r; printf "%s" "$REPLY"; sort)"
+alias dpq="docker ps --format 'table {{.Names}}\t{{.Status}}' -a | (read -r; printf "%s" "$REPLY"; sort)"
+alias dpa=" docker ps --format 'table {{.Names}}\t{{.Status}}\t{{.Networks}}\t{{.Ports}}\t{{.Image}}' -a | (read -r; printf "%s" "$REPLY"; sort)"
 
 alias din="docker inspect"
 alias dstart="docker start"
