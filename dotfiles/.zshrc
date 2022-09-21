@@ -151,11 +151,22 @@ alias spnl="sudo podman network ls"
 alias spnc="sudo podman network connect"
 alias spnd="sudo podman network disconnect"
 
-# docker
+# docker-compose
 alias dc='docker-compose'
 alias dcu="docker-compose pull && docker-compose up -d"
 alias dcr="docker-compose down && docker-compose up -d"
 
+# podman-compose
+alias pc='podman-compose'
+alias pcu="podman-compose pull && docker-compose up -d"
+alias pcr="podman-compose down && docker-compose up -d"
+
+# sudo podman-compose
+alias spc='sudo podman-compose'
+alias spcu="sudo podman-compose pull && docker-compose up -d"
+alias spcr="sudo podman-compose down && docker-compose up -d"
+
+# docker
 alias dk='docker'
 alias di='docker image'
 alias dl='docker logs'
