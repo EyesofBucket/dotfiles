@@ -168,17 +168,19 @@ alias spcr="sudo podman-compose down && docker-compose up -d"
 
 # docker
 alias dk='docker'
+alias din="docker inspect"
+alias dstart="docker start"
+alias dstop="docker stop"
+alias dr="docker restart"
+
 alias di='docker image'
+alias dip='docker image prune'
+
 alias dl='docker logs'
 
 alias dps="docker ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}' -a | (read -r; printf "%s" "$REPLY"; sort)"
 alias dpq="docker ps --format 'table {{.Names}}\t{{.Status}}' -a | (read -r; printf "%s" "$REPLY"; sort)"
 alias dpa=" docker ps --format 'table {{.Names}}\t{{.Status}}\t{{.Networks}}\t{{.Ports}}\t{{.Image}}' -a | (read -r; printf "%s" "$REPLY"; sort)"
-
-alias din="docker inspect"
-alias dstart="docker start"
-alias dstop="docker stop"
-alias dr="docker restart"
 
 alias dn="docker network"
 alias dni="docker network inspect"
