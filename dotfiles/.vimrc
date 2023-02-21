@@ -5,6 +5,7 @@ call plug#begin()
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'easymotion/vim-easymotion'
+Plug 'cespare/vim-toml'
 call plug#end()
 
 let g:airline_theme='violet'
