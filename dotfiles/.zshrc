@@ -113,80 +113,91 @@ alias update="sudo apt update && sudo apt upgrade -y"
 alias pubip='curl ifconfig.io'
 
 # podman
-alias pm='podman'
-alias pmi='podman image'
-alias pml='podman logs'
-alias pmp='podman pod'
+which podman >/dev/null 2>&1
+if [ $? == 0 ]; then
+    alias pm='podman'
+    alias pmi='podman image'
+    alias pml='podman logs'
+    alias pmp='podman pod'
 
-alias pps="podman ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}' -a | (read -r; printf "%s" "$REPLY"; sort)"
-alias ppq="podman ps --format 'table {{.Names}}\t{{.Status}}' -a | (read -r; printf "%s" "$REPLY"; sort)"
-alias ppa="podman ps --format 'table {{.Names}}\t{{.Status}}\t{{.Networks}}\t{{.Ports}}\t{{.Image}}' -a | (read -r; printf "%s" "$REPLY"; sort)"
+    alias pps="podman ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}' -a | (read -r; printf "%s" "$REPLY"; sort)"
+    alias ppq="podman ps --format 'table {{.Names}}\t{{.Status}}' -a | (read -r; printf "%s" "$REPLY"; sort)"
+    alias ppa="podman ps --format 'table {{.Names}}\t{{.Status}}\t{{.Networks}}\t{{.Ports}}\t{{.Image}}' -a | (read -r; printf "%s" "$REPLY"; sort)"
 
-alias pin="podman inspect"
-alias pms="podman start"
-alias pmx="podman stop"
-alias pmr="podman restart"
+    alias pin="podman inspect"
+    alias pms="podman start"
+    alias pmx="podman stop"
+    alias pmr="podman restart"
 
-alias pmn="podman network"
-alias pni="podman network inspect"
-alias pnl="podman network ls"
-alias pnc="podman network connect"
-alias pnd="podman network disconnect"
+    alias pmn="podman network"
+    alias pni="podman network inspect"
+    alias pnl="podman network ls"
+    alias pnc="podman network connect"
+    alias pnd="podman network disconnect"
 
-# sudo podman
-alias spm='sudo podman'
-alias spmi='sudo podman image'
-alias spml='sudo podman logs'
-alias spmp='sudo podman pod'
+    # sudo podman
+    alias spm='sudo podman'
+    alias spmi='sudo podman image'
+    alias spml='sudo podman logs'
+    alias spmp='sudo podman pod'
 
-alias spps="sudo podman ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}' -a | (read -r; printf "%s" "$REPLY"; sort)"
-alias sppq="sudo podman ps --format 'table {{.Names}}\t{{.Status}}' -a | (read -r; printf "%s" "$REPLY"; sort)"
-alias sppa="sudo podman ps --format 'table {{.Names}}\t{{.Status}}\t{{.Networks}}\t{{.Ports}}\t{{.Image}}' -a | (read -r; printf "%s" "$REPLY"; sort)"
+    alias spps="sudo podman ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}' -a | (read -r; printf "%s" "$REPLY"; sort)"
+    alias sppq="sudo podman ps --format 'table {{.Names}}\t{{.Status}}' -a | (read -r; printf "%s" "$REPLY"; sort)"
+    alias sppa="sudo podman ps --format 'table {{.Names}}\t{{.Status}}\t{{.Networks}}\t{{.Ports}}\t{{.Image}}' -a | (read -r; printf "%s" "$REPLY"; sort)"
 
-alias spin="sudo podman inspect"
-alias spms="sudo podman start"
-alias spmx="sudo podman stop"
-alias spmr="sudo podman restart"
+    alias spin="sudo podman inspect"
+    alias spms="sudo podman start"
+    alias spmx="sudo podman stop"
+    alias spmr="sudo podman restart"
 
-alias spmn="sudo podman network"
-alias spni="sudo podman network inspect"
-alias spnl="sudo podman network ls"
-alias spnc="sudo podman network connect"
-alias spnd="sudo podman network disconnect"
+    alias spmn="sudo podman network"
+    alias spni="sudo podman network inspect"
+    alias spnl="sudo podman network ls"
+    alias spnc="sudo podman network connect"
+    alias spnd="sudo podman network disconnect"
+fi
 
 # docker-compose
-alias dc='docker-compose'
-alias dcu="docker-compose pull && docker-compose up -d"
-alias dcr="docker-compose down && docker-compose up -d"
-
+which docker-compose >/dev/null 2>&1
+if [ $? == 0 ]; then
+    alias dc='docker-compose'
+    alias dcu="docker-compose pull && docker-compose up -d"
+    alias dcr="docker-compose down && docker-compose up -d"
+fi
 # podman-compose
-alias pc='podman-compose'
-alias pcu="podman-compose pull && docker-compose up -d"
-alias pcr="podman-compose down && docker-compose up -d"
+which podman-compose >/dev/null 2>&1
+if [ $? == 0 ]; then
+    alias pc='podman-compose'
+    alias pcu="podman-compose pull && docker-compose up -d"
+    alias pcr="podman-compose down && docker-compose up -d"
 
-# sudo podman-compose
-alias spc='sudo podman-compose'
-alias spcu="sudo podman-compose pull && docker-compose up -d"
-alias spcr="sudo podman-compose down && docker-compose up -d"
+    # sudo podman-compose
+    alias spc='sudo podman-compose'
+    alias spcu="sudo podman-compose pull && docker-compose up -d"
+    alias spcr="sudo podman-compose down && docker-compose up -d"
+fi
 
 # docker
-alias dk='docker'
-alias din="docker inspect"
-alias dstart="docker start"
-alias dstop="docker stop"
-alias dr="docker restart"
+which docker >/dev/null 2>&1
+if [ $? == 0 ]; then
+    alias dk='docker'
+    alias din="docker inspect"
+    alias dstart="docker start"
+    alias dstop="docker stop"
+    alias dr="docker restart"
 
-alias di='docker image'
-alias dip='docker image prune'
+    alias di='docker image'
+    alias dip='docker image prune'
 
-alias dl='docker logs'
+    alias dl='docker logs'
 
-alias dps="docker ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}' -a | (read -r; printf "%s" "$REPLY"; sort)"
-alias dpq="docker ps --format 'table {{.Names}}\t{{.Status}}' -a | (read -r; printf "%s" "$REPLY"; sort)"
-alias dpa=" docker ps --format 'table {{.Names}}\t{{.Status}}\t{{.Networks}}\t{{.Ports}}\t{{.Image}}' -a | (read -r; printf "%s" "$REPLY"; sort)"
+    alias dps="docker ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}' -a | (read -r; printf "%s" "$REPLY"; sort)"
+    alias dpq="docker ps --format 'table {{.Names}}\t{{.Status}}' -a | (read -r; printf "%s" "$REPLY"; sort)"
+    alias dpa=" docker ps --format 'table {{.Names}}\t{{.Status}}\t{{.Networks}}\t{{.Ports}}\t{{.Image}}' -a | (read -r; printf "%s" "$REPLY"; sort)"
 
-alias dn="docker network"
-alias dni="docker network inspect"
-alias dnl="docker network ls"
-alias dnc="docker network connect"
-alias dnd="docker network disconnect"
+    alias dn="docker network"
+    alias dni="docker network inspect"
+    alias dnl="docker network ls"
+    alias dnc="docker network connect"
+    alias dnd="docker network disconnect"
+fi
