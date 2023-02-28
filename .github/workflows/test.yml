@@ -27,6 +27,7 @@ jobs:
 
       - name: Setup workspace
         run: |
+          sudo apt install zsh curl wget vim
           chmod a+x $GITHUB_WORKSPACE/*.sh
           
       # Runs a single command using the runners shell
