@@ -28,12 +28,19 @@ jobs:
       - name: Setup workspace
         run: |
           sudo apt install zsh curl wget vim
-          chmod a+x $GITHUB_WORKSPACE/*.sh
-          
-      # Runs a single command using the runners shell
-      - name: Run setup.sh
-        run: $GITHUB_WORKSPACE/setup.sh
+          cd $GITHUB_WORKSPACE
+          chmod a+x ./*.sh
 
-      # Runs a set of commands using the runners shell
+      - name: Run setup.sh
+        run: ./setup.sh
+
       - name: Run update.sh
-        run: $GITHUB_WORKSPACE/update.sh
+        run: ./update.sh
+
+      - name: Evaluate the environment
+        run: |
+          echo Zsh plugins: $plugins
+          vim --not-a-term -c "PlugStatus" -c "%w /tmp/vim.log" -c "qa" >/dev/null
+          echo Vim plugins:
+          cat /tmp/vim.log
+
