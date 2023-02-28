@@ -1,5 +1,7 @@
 # EyesofBucket's Config Files
-Installs all my favorite shell stuff.
+Designed to be a quick and easy way to set up my ideal linux user environment, including my preferred shell, themes, plugins, and aliases.  Gone are the days of copying and pasting .config directories, of trying to figure out how to get that one vim plugin working.  Just run the setup script and enjoy a perfectly configured profile...
+
+...Or at least for now.  I'm always looking for new ways to optimize my workflow, and as such this repo is ever-changing. Not to worry, though! most updates can be applied by simply using the update script.  The update script excludes installers and downloads and focuses primarily on config files stored in this repo.
 
 ### What it Installs
 - oh-my-zsh
@@ -11,13 +13,6 @@ Installs all my favorite shell stuff.
 - Vim plugins
 - Aliases
 - Posh themes
-
-### Requirements
-- curl
-- git
-- vim
-- wget
-- zsh
 
 ## Setup
 For initial install, simply paste this command in a shell
