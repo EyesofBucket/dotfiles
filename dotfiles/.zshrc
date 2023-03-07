@@ -113,7 +113,8 @@ alias update="sudo apt update && sudo apt upgrade -y"
 alias pubip='curl ifconfig.io'
 
 # podman
-if which podman; then
+if which podman >/dev/null
+then
     alias pm='podman'
     alias pmi='podman image'
     alias pml='podman logs'
@@ -157,13 +158,15 @@ if which podman; then
 fi
 
 # docker-compose
-if which docker-compose; then
+if which docker-compose >/dev/null
+then
     alias dc='docker-compose'
     alias dcu="docker-compose pull && docker-compose up -d"
     alias dcr="docker-compose down && docker-compose up -d"
 fi
 # podman-compose
-if which podman-compose; then
+if which podman-compose >/dev/null
+then
     alias pc='podman-compose'
     alias pcu="podman-compose pull && docker-compose up -d"
     alias pcr="podman-compose down && docker-compose up -d"
@@ -175,7 +178,8 @@ if which podman-compose; then
 fi
 
 # docker
-if which docker; then
+if which docker >/dev/null
+then
     alias dk='docker'
     alias din="docker inspect"
     alias dstart="docker start"

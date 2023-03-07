@@ -6,15 +6,18 @@
 PACKAGES='curl wget zsh git vim'
 
 # Debian
-if which apt; then
+if which apt >/dev/null
+then
     sudo apt install -y $PACKAGES
 
 # Fedora
-elif which yum; then
+elif which yum >/dev/null
+then
     sudo yum install -y $PACKAGES
 
 # Arch
-elif which pacman; then
+elif which pacman >/dev/null
+then
     sudo pacman -S --noconfirm $PACKAGES
 else
     printf "\033[0;31mUnable to install requirements: No package manager found.\033[0m\n" 1>&2
