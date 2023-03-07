@@ -17,7 +17,7 @@ Designed to be a quick and easy way to set up my ideal linux user environment, i
 - Posh themes
 
 ## Setup
-For initial install, simply paste this command in a shell
+For initial install, simply paste this command in a shell.
 ```bash
 sh -c "$(curl -fsSL https://raw.github.com/eyesofBucket/configs/main/setup.sh)" ""
 ```
@@ -25,4 +25,14 @@ sh -c "$(curl -fsSL https://raw.github.com/eyesofBucket/configs/main/setup.sh)" 
 This one just updates the dotfiles if everything is already installed.
 ```bash
 sh -c "$(curl -fsSL https://raw.github.com/eyesofBucket/configs/main/update.sh)" ""
+```
+## Test Branch
+When pulling from the test branch, use these commands instead.
+### Setup
+```bash
+sh -c "$(curl -fsSL https://raw.github.com/eyesofBucket/configs/test/test/setup.sh)" ""
+```
+### Update
+```bash
+sh -c "$(curl -fsSL https://raw.github.com/eyesofBucket/configs/test/test/update.sh)" ""
 ```

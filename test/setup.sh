@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# sh -c "$(curl -fsSL https://raw.github.com/eyesofBucket/configs/test/setup.sh)" ""
-
 # Install requirements
 PACKAGES='curl wget zsh git vim'
 
