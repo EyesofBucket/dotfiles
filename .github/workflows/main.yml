@@ -44,14 +44,14 @@ jobs:
 
       - name: Check setup.sh consistency
         run: |
-          if ! diff <(sed 's|eyesofBucket/configs/test/dotfiles|eyesofBucket/configs/main/dotfiles|g' test/setup.sh) setup.sh
+          if ! diff <(sed 's|eyesofBucket/configs/test/|eyesofBucket/configs/main/|g' test/setup.sh) setup.sh
           then
           exit 1
           fi
 
       - name: Check update.sh consistency
         run: |
-          if ! diff <(sed 's|eyesofBucket/configs/test/dotfiles|eyesofBucket/configs/main/dotfiles|g' test/update.sh) update.sh
+          if ! diff <(sed 's|eyesofBucket/configs/test/|eyesofBucket/configs/main/|g' test/update.sh) update.sh
           then
           exit 1
           fi
