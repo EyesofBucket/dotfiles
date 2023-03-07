@@ -46,8 +46,8 @@ rm ~/.poshthemes/themes.zip
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 # Add config files
-wget --no-verbose https://raw.github.com/eyesofBucket/configs/main/dotfiles/.zshrc -O ~/.zshrc
-wget --no-verbose https://raw.github.com/eyesofBucket/configs/main/dotfiles/.vimrc -O ~/.vimrc
+wget --no-verbose https://raw.github.com/eyesofBucket/configs/test/dotfiles/.zshrc -O ~/.zshrc
+wget --no-verbose https://raw.github.com/eyesofBucket/configs/test/dotfiles/.vimrc -O ~/.vimrc
 
 # Install vim plugins as listed in the config file
 vim --not-a-term -c "PlugInstall" -c "%w /tmp/vim.log" -c "qa" >/dev/null
