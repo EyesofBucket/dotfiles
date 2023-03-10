@@ -9,7 +9,7 @@ export ZSH=$HOME/.oh-my-zsh
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 
-eval "$(oh-my-posh init zsh --config ~/.poshthemes/montys.omp.json)"
+eval "$(oh-my-posh init zsh --config ~/.poshthemes/easy-term.omp.json)"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -113,7 +113,7 @@ alias update="sudo apt update && sudo apt upgrade -y"
 alias pubip='curl ifconfig.io'
 
 # podman
-if which podman >/dev/null
+if which podman >/dev/null 2>&1
 then
     alias pm='podman'
     alias pmi='podman image'
@@ -158,27 +158,27 @@ then
 fi
 
 # docker-compose
-if which docker-compose >/dev/null
+if which docker-compose >/dev/null 2>&1
 then
     alias dc='docker-compose'
     alias dcu="docker-compose pull && docker-compose up -d"
     alias dcr="docker-compose down && docker-compose up -d"
 fi
 # podman-compose
-if which podman-compose >/dev/null
+if which podman-compose >/dev/null 2>&1
 then
     alias pc='podman-compose'
-    alias pcu="podman-compose pull && docker-compose up -d"
-    alias pcr="podman-compose down && docker-compose up -d"
+    alias pcu="podman-compose pull && podman-compose up -d"
+    alias pcr="podman-compose down && podman-compose up -d"
 
     # sudo podman-compose
-    alias spc='sudo podman-compose'
-    alias spcu="sudo podman-compose pull && docker-compose up -d"
-    alias spcr="sudo podman-compose down && docker-compose up -d"
+    alias spc='sudo /usr/local/bin/podman-compose'
+    alias spcu="sudo /usr/local/bin/podman-compose pull && sudo /usr/local/bin/podman-compose up -d"
+    alias spcr="sudo /usr/local/bin/podman-compose down && sudo /usr/local/bin/podman-compose up -d"
 fi
 
 # docker
-if which docker >/dev/null
+if which docker >/dev/null 2>&1
 then
     alias dk='docker'
     alias din="docker inspect"
