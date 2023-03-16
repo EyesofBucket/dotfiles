@@ -116,20 +116,22 @@ alias pubip='curl ifconfig.io'
 if which podman >/dev/null 2>&1
 then
     alias pm='podman'
-    alias pmi='podman image'
     alias pml='podman logs'
     alias pmp='podman pod'
+    
+    alias pmi='podman image'
+    alias pmip='podman image prune'
 
     alias pps="podman ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}' -a | (read -r; printf "%s" "$REPLY"; sort)"
     alias ppq="podman ps --format 'table {{.Names}}\t{{.Status}}' -a | (read -r; printf "%s" "$REPLY"; sort)"
     alias ppa="podman ps --format 'table {{.Names}}\t{{.Status}}\t{{.Networks}}\t{{.Ports}}\t{{.Image}}' -a | (read -r; printf "%s" "$REPLY"; sort)"
 
     alias pin="podman inspect"
-    alias pms="podman start"
-    alias pmx="podman stop"
+    alias pmstart="podman start"
+    alias pmstop="podman stop"
     alias pmr="podman restart"
 
-    alias pmn="podman network"
+    alias pn="podman network"
     alias pni="podman network inspect"
     alias pnl="podman network ls"
     alias pnc="podman network connect"
@@ -137,20 +139,22 @@ then
 
     # sudo podman
     alias spm='sudo podman'
-    alias spmi='sudo podman image'
     alias spml='sudo podman logs'
     alias spmp='sudo podman pod'
+
+    alias spmi='sudo podman image'
+    alias spmip='sudo podman image prune'
 
     alias spps="sudo podman ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}' -a | (read -r; printf "%s" "$REPLY"; sort)"
     alias sppq="sudo podman ps --format 'table {{.Names}}\t{{.Status}}' -a | (read -r; printf "%s" "$REPLY"; sort)"
     alias sppa="sudo podman ps --format 'table {{.Names}}\t{{.Status}}\t{{.Networks}}\t{{.Ports}}\t{{.Image}}' -a | (read -r; printf "%s" "$REPLY"; sort)"
 
     alias spin="sudo podman inspect"
-    alias spms="sudo podman start"
-    alias spmx="sudo podman stop"
+    alias spmstart="sudo podman start"
+    alias spmstop="sudo podman stop"
     alias spmr="sudo podman restart"
 
-    alias spmn="sudo podman network"
+    alias spn="sudo podman network"
     alias spni="sudo podman network inspect"
     alias spnl="sudo podman network ls"
     alias spnc="sudo podman network connect"
@@ -163,41 +167,66 @@ then
     alias dc='docker-compose'
     alias dcu="docker-compose pull && docker-compose up -d"
     alias dcr="docker-compose down && docker-compose up -d"
+    alias dcd='docker-compose down'
 fi
+
 # podman-compose
 if which podman-compose >/dev/null 2>&1
 then
     alias pc='podman-compose'
     alias pcu="podman-compose pull && podman-compose up -d"
     alias pcr="podman-compose down && podman-compose up -d"
+    alias pcd="podman-compose down"
 
     # sudo podman-compose
     alias spc='sudo /usr/local/bin/podman-compose'
     alias spcu="sudo /usr/local/bin/podman-compose pull && sudo /usr/local/bin/podman-compose up -d"
     alias spcr="sudo /usr/local/bin/podman-compose down && sudo /usr/local/bin/podman-compose up -d"
+    alias spcd="sudo /usr/local/bin/podman-compose down"
 fi
 
 # docker
 if which docker >/dev/null 2>&1
 then
     alias dk='docker'
-    alias din="docker inspect"
-    alias dstart="docker start"
-    alias dstop="docker stop"
-    alias dr="docker restart"
+    alias dl='docker logs'
 
     alias di='docker image'
     alias dip='docker image prune'
 
-    alias dl='docker logs'
-
     alias dps="docker ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}' -a | (read -r; printf "%s" "$REPLY"; sort)"
     alias dpq="docker ps --format 'table {{.Names}}\t{{.Status}}' -a | (read -r; printf "%s" "$REPLY"; sort)"
     alias dpa=" docker ps --format 'table {{.Names}}\t{{.Status}}\t{{.Networks}}\t{{.Ports}}\t{{.Image}}' -a | (read -r; printf "%s" "$REPLY"; sort)"
+
+    alias din="docker inspect"
+    alias dstart="docker start"
+    alias dstop="docker stop"
+    alias dr="docker restart"
 
     alias dn="docker network"
     alias dni="docker network inspect"
     alias dnl="docker network ls"
     alias dnc="docker network connect"
     alias dnd="docker network disconnect"
+fi
+
+# firewall-cmd
+if which firewall-cmd >/dev/null 2>&1
+then
+    alias fw="sudo firewall-cmd"
+    alias fws="sudo firewall-cmd --state"
+    alias fwl="sudo firewall-cmd --list-all"
+
+    alias fwr="sudo firewall-cmd --reload"
+    alias fwcr="sudo firewall-cmd --complete-reload"
+
+    alias fwap="sudo firewall-cmd --add-port"
+    alias fwapp="sudo firewall-cmd --permanent --add-port"
+    alias fwrp="sudo firewall-cmd --remove-port"
+    alias fwrpp="sudo firewall-cmd --permanent --remove-port"
+
+    alias fwas="sudo firewall-cmd --add-service"
+    alias fwasp="sudo firewall-cmd --permanent --add-service"
+    alias fwrs="sudo firewall-cmd --remove-service"
+    alias fwrsp="sudo firewall-cmd --permanent --remove-service"
 fi
