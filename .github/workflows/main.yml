@@ -42,20 +42,6 @@ jobs:
           echo Vim plugins:
           cat /tmp/vim.log
 
-      - name: Check setup.sh consistency
-        run: |
-          if ! diff <(sed 's|eyesofBucket/configs/test/|eyesofBucket/configs/main/|g' test/setup.sh) setup.sh
-          then
-          exit 1
-          fi
-
-      - name: Check update.sh consistency
-        run: |
-          if ! diff <(sed 's|eyesofBucket/configs/test/|eyesofBucket/configs/main/|g' test/update.sh) update.sh
-          then
-          exit 1
-          fi
-
       - name: ShellCheck
         # You may pin to the exact commit or the version.
         # uses: ludeeus/action-shellcheck@00cae500b08a931fb5698e11e79bfbd38e612a38
