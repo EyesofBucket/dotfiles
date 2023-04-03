@@ -108,9 +108,23 @@ alias svim='sudoedit'
 
 alias colormap='for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+"\n"}; done'
 
-alias update="sudo apt update && sudo apt upgrade -y"
-
 alias pubip='curl ifconfig.io'
+
+# Debian
+if which apt >/dev/null 2>&1
+then
+    alias update="sudo apt update && sudo apt upgrade -y"
+
+# Fedora
+elif which yum >/dev/null 2>&1
+then
+    alias update="sudo yum update -y"
+
+# Arch
+elif which pacman >/dev/null 2>&1
+then
+    alias update="sudo pacman -Syu"
+fi
 
 # podman
 if which podman >/dev/null 2>&1
