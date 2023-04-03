@@ -37,7 +37,7 @@ jobs:
 
       - name: Evaluate the environment
         run: |
-          echo Zsh plugins: $plugins
+          zsh dotfiles/.zshrc
           vim --not-a-term -c "PlugStatus" -c "%w /tmp/vim.log" -c "qa" >/dev/null
           echo Vim plugins:
           cat /tmp/vim.log
@@ -56,3 +56,10 @@ jobs:
           exit 1
           fi
 
+      - name: ShellCheck
+        # You may pin to the exact commit or the version.
+        # uses: ludeeus/action-shellcheck@00cae500b08a931fb5698e11e79bfbd38e612a38
+        uses: ludeeus/action-shellcheck@2.0.0
+        with:
+          severity: error
+          ignore_paths: dotfiles
