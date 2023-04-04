@@ -63,7 +63,8 @@
           "foreground": "#cccccc",
           "properties": {
             "folder_icon": "\u2026",
-            "style": "powerlevel"
+            "style": "powerlevel",
+            "max_width": 50
           }
         },
         {
