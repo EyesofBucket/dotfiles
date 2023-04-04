@@ -1,31 +1,54 @@
 {
   "version": 2,
   "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "palette": {
+    "darkgrey": "#222222",
+    "grey": "#666666"
+  },
   "blocks": [
     {
       "type": "prompt",
       "alignment": "left",
       "segments": [
         {
+          "type": "session",
+          "style": "plain",
+          "template": " {{ if .SSHSession }}\uf817 {{ end }}",
+          "background": "yellow",
+          "foreground": "p:darkgrey"
+        },
+        {
           "type": "root",
           "style": "plain",
           "template": "\uf0e7",
           "background": "#ffcc88",
-          "foreground": "#222222"
+          "foreground": "p:darkgrey"
         },
         {
           "type": "os",
           "style": "plain",
-          "template": " {{ if .WSL }}\uf68e {{ end }}{{.Icon}}",
-          "background": "#222222",
-          "foreground": "#666666"
+          "template": " {{ if .WSL }}\uf68e {{ end }}{{.Icon}} ",
+          "background": "p:darkgrey",
+          "foreground": "p:grey",
+          "background_templates": [
+            "{{if contains \"darwin\" .OS}}#FFFFFF{{end}}",
+            "{{if contains \"ubuntu\" .OS}}#DD4814{{end}}",
+            "{{if contains \"redhat\" .OS}}#EE0000{{end}}",
+            "{{if contains \"windows\" .OS}}#00A2ED{{end}}"
+          ],
+          "foreground_templates": [
+            "{{if contains \"darwin\" .OS}}p:grey{{end}}",
+            "{{if contains \"ubuntu\" .OS}}#FFFFFF{{end}}",
+            "{{if contains \"redhat\" .OS}}p:darkgrey{{end}}",
+            "{{if contains \"windows\" .OS}}#FFFFFF{{end}}"
+          ]
         },
         {
           "type": "session",
           "style": "plain",
-          "template": " {{ if .SSHSession }}\uf817 {{ end }}{{ .UserName }}@{{ .HostName }} ",
-          "background": "#222222",
-          "foreground": "#666666"
+          "template": " {{ .UserName }}@{{ .HostName }} ",
+          "background": "p:darkgrey",
+          "foreground": "p:grey"
         },
         {
           "type": "path",
@@ -115,7 +138,7 @@
           "style": "plain",
           "template": " {{ .FormattedMs }} ",
           "background": "#007ACC",
-          "foreground": "#222222",
+          "foreground": "#FFFFFF",
           "properties": {
             "style": "austin",
             "threshold": 321
