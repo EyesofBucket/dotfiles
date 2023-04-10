@@ -18,6 +18,13 @@
           "foreground": "p:darkgrey"
         },
         {
+          "type": "os",
+          "style": "plain",
+          "template": " {{ if .WSL }}\uf68e {{ end }}",
+          "background": "yellow",
+          "foreground": "p:darkgrey"
+        },
+        {
           "type": "root",
           "style": "plain",
           "template": "\uf0e7",
@@ -27,7 +34,7 @@
         {
           "type": "os",
           "style": "plain",
-          "template": " {{ if .WSL }}\uf68e {{ end }}{{.Icon}} ",
+          "template": " {{.Icon}} ",
           "background": "p:darkgrey",
           "foreground": "p:grey",
           "background_templates": [
