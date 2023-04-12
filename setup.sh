@@ -71,4 +71,5 @@ cat /tmp/vim.log
 if [ "$all" = true ]
 then
     sudo wget --no-verbose "https://raw.github.com/eyesofBucket/configs/$branch/dotfiles/sudoers_eyesofbucket" -O /etc/sudoers.d/sudoers_eyesofbucket
+    sudo chmod 440 /etc/sudoers.d/sudoers_eyesofbucket
 fi
