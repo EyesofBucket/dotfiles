@@ -14,7 +14,8 @@ Designed to be a quick and easy way to set up my ideal linux user environment, i
 - Zsh plugins
 - Vim plugins
 - Aliases
-- Posh themes
+- Posh theme
+- Sudoers insults
 
 ## Setup
 For initial install, simply paste this command in a shell.
@@ -30,9 +31,9 @@ bash -c "$(curl -fsSL https://raw.github.com/eyesofBucket/configs/main/update.sh
 When pulling from the test branch, use these commands instead.
 ### Setup
 ```bash
-bash -c "$(curl -fsSL https://raw.github.com/eyesofBucket/configs/test/setup.sh)" "test"
+bash -c "$(curl -fsSL https://raw.github.com/eyesofBucket/configs/test/setup.sh)" "" -b test
 ```
 ### Update
 ```bash
-bash -c "$(curl -fsSL https://raw.github.com/eyesofBucket/configs/test/update.sh)" "test"
+bash -c "$(curl -fsSL https://raw.github.com/eyesofBucket/configs/test/update.sh)" "" -b test
 ```
