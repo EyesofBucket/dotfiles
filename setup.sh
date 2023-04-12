@@ -1,5 +1,4 @@
 #!/bin/bash
-#!/bin/bash
 
 branch="main"
 
@@ -71,5 +70,5 @@ cat /tmp/vim.log
 
 if [ "$all" = true ]
 then
-    wget --no-verbose "https://raw.github.com/eyesofBucket/configs/$branch/dotfiles/sudoers_eyesofbucket" -O /etc/sudoers.d/sudoers_eyesofbucket
+    sudo wget --no-verbose "https://raw.github.com/eyesofBucket/configs/$branch/dotfiles/sudoers_eyesofbucket" -O /etc/sudoers.d/sudoers_eyesofbucket
 fi
