@@ -1,12 +1,24 @@
 #!/bin/bash
 
-# Specify branch
-if [ -z "$0" ]
-then
-    branch="main"
-else
-    branch="$0"
-fi
+branch="main"
+
+while getopts 'ab:h' opt; do
+  case "$opt" in
+    a)
+      all=true
+      ;;
+
+    b)
+      branch="$OPTARG"
+      ;;
+   
+    ?|h)
+      echo "Usage: setup.sh [-a] [-b branch]"
+      exit 1
+      ;;
+  esac
+done
+shift "$(($OPTIND -1))"
 
 # Install requirements
 PACKAGES='curl wget zsh git vim'
@@ -48,10 +60,16 @@ sudo chmod +x /usr/local/bin/oh-my-posh
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 # Add config files
-wget --no-verbose "https://raw.github.com/eyesofBucket/configs/$branch/dotfiles/.zshrc" -O ~/.zshrc
-wget --no-verbose "https://raw.github.com/eyesofBucket/configs/$branch/dotfiles/.eyesofbucket.omp.json" -O ~/.eyesofbucket.omp.json
-wget --no-verbose "https://raw.github.com/eyesofBucket/configs/$branch/dotfiles/.vimrc" -O ~/.vimrc
+wget --no-verbose "https://raw.github.com/eyesofBucket/configs/$branch/dotfiles/zshrc" -O ~/.zshrc
+wget --no-verbose "https://raw.github.com/eyesofBucket/configs/$branch/dotfiles/eyesofbucket.omp.json" -O ~/.eyesofbucket.omp.json
+wget --no-verbose "https://raw.github.com/eyesofBucket/configs/$branch/dotfiles/vimrc" -O ~/.vimrc
 
 # Install vim plugins as listed in the config file
 vim --not-a-term -c "PlugInstall" -c "%w /tmp/vim.log" -c "qa" >/dev/null
 cat /tmp/vim.log
+
+if [ "$all" = true ]
+then
+    sudo wget --no-verbose "https://raw.github.com/eyesofBucket/configs/$branch/dotfiles/sudoers_eyesofbucket" -O /etc/sudoers.d/eyesofbucket
+    sudo chmod 440 /etc/sudoers.d/eyesofbucket
+fi

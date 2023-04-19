@@ -30,17 +30,20 @@ jobs:
           chmod a+x ./*.sh
 
       - name: Run setup.sh
-        run: ./setup.sh
+        run: ./setup.sh -a -b $GITHUB_REF_NAME
 
       - name: Run update.sh
-        run: ./update.sh
+        run: ./update.sh -a -b $GITHUB_REF_NAME
 
       - name: Evaluate the environment
         run: |
-          zsh dotfiles/.zshrc
+          zsh dotfiles/zshrc
           vim --not-a-term -c "PlugStatus" -c "%w /tmp/vim.log" -c "qa" >/dev/null
           echo Vim plugins:
           cat /tmp/vim.log
+
+      - name: Evaluate sudoers
+        run: visudo -cf dotfiles/sudoers_eyesofbucket
 
       - name: ShellCheck
         # You may pin to the exact commit or the version.
