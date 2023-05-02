@@ -52,7 +52,7 @@
             "{{if contains \"windows\" .OS}}#FFFFFF{{end}}"
           ],
           "properties": {
-            "redhat": "\u111b"
+            "redhat": "\udb84\udd1b"
           }
         },
         {
