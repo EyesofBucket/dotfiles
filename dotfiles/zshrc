@@ -136,9 +136,9 @@ then
     alias pmi='podman image'
     alias pmip='podman image prune'
 
-    alias pps="podman ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}' -a | (read -r; printf "%s" "$REPLY"; sort)"
-    alias ppq="podman ps --format 'table {{.Names}}\t{{.Status}}' -a | (read -r; printf "%s" "$REPLY"; sort)"
-    alias ppa="podman ps --format 'table {{.Names}}\t{{.Status}}\t{{.Networks}}\t{{.Ports}}\t{{.Image}}' -a | (read -r; printf "%s" "$REPLY"; sort)"
+    alias pps="podman ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}' -a | (read -r; printf "%s\n" "\$REPLY"; sort)"
+    alias ppq="podman ps --format 'table {{.Names}}\t{{.Status}}' -a | (read -r; printf "%s\n" "\$REPLY"; sort)"
+    alias ppa="podman ps --format 'table {{.Names}}\t{{.Status}}\t{{.Networks}}\t{{.Ports}}\t{{.Image}}' -a | (read -r; printf "%s\n" "\$REPLY"; sort)"
 
     alias pin="podman inspect"
     alias pmstart="podman start"
@@ -159,9 +159,9 @@ then
     alias spmi='sudo podman image'
     alias spmip='sudo podman image prune'
 
-    alias spps="sudo podman ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}' -a | (read -r; printf "%s" "$REPLY"; sort)"
-    alias sppq="sudo podman ps --format 'table {{.Names}}\t{{.Status}}' -a | (read -r; printf "%s" "$REPLY"; sort)"
-    alias sppa="sudo podman ps --format 'table {{.Names}}\t{{.Status}}\t{{.Networks}}\t{{.Ports}}\t{{.Image}}' -a | (read -r; printf "%s" "$REPLY"; sort)"
+    alias spps="sudo podman ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}' -a | (read -r; printf "%s\n" "\$REPLY"; sort)"
+    alias sppq="sudo podman ps --format 'table {{.Names}}\t{{.Status}}' -a | (read -r; printf "%s\n" "\$REPLY"; sort)"
+    alias sppa="sudo podman ps --format 'table {{.Names}}\t{{.Status}}\t{{.Networks}}\t{{.Ports}}\t{{.Image}}' -a | (read -r; printf "%s\n" "\$REPLY"; sort)"
 
     alias spin="sudo podman inspect"
     alias spmstart="sudo podman start"
@@ -173,15 +173,6 @@ then
     alias spnl="sudo podman network ls"
     alias spnc="sudo podman network connect"
     alias spnd="sudo podman network disconnect"
-fi
-
-# docker-compose
-if which docker-compose >/dev/null 2>&1
-then
-    alias dc='docker-compose'
-    alias dcu="docker-compose pull && docker-compose up -d"
-    alias dcr="docker-compose down && docker-compose up -d"
-    alias dcd='docker-compose down'
 fi
 
 # podman-compose
@@ -208,9 +199,9 @@ then
     alias di='docker image'
     alias dip='docker image prune'
 
-    alias dps="docker ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}' -a | (read -r; printf "%s" "$REPLY"; sort)"
-    alias dpq="docker ps --format 'table {{.Names}}\t{{.Status}}' -a | (read -r; printf "%s" "$REPLY"; sort)"
-    alias dpa=" docker ps --format 'table {{.Names}}\t{{.Status}}\t{{.Networks}}\t{{.Ports}}\t{{.Image}}' -a | (read -r; printf "%s" "$REPLY"; sort)"
+    alias dps="docker ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}' -a | (read -r; printf "%s\n" "\$REPLY"; sort)"
+    alias dpq="docker ps --format 'table {{.Names}}\t{{.Status}}' -a | (read -r; printf "%s\n" "\$REPLY"; sort)"
+    alias dpa="docker ps --format 'table {{.Names}}\t{{.Status}}\t{{.Networks}}\t{{.Ports}}\t{{.Image}}' -a | (read -r; printf "%s\n" "\$REPLY"; sort)"
 
     alias din="docker inspect"
     alias dstart="docker start"
@@ -222,6 +213,21 @@ then
     alias dnl="docker network ls"
     alias dnc="docker network connect"
     alias dnd="docker network disconnect"
+
+    # For the compose plugin.  Gets overwritten if docker-compose still exists
+    alias dc='docker compose'
+    alias dcu="docker compose pull && docker-compose up -d"
+    alias dcr="docker compose down && docker-compose up -d"
+    alias dcd='docker compose down'
+fi
+
+# docker-compose
+if which docker-compose >/dev/null 2>&1
+then
+    alias dc='docker-compose'
+    alias dcu="docker-compose pull && docker-compose up -d"
+    alias dcr="docker-compose down && docker-compose up -d"
+    alias dcd='docker-compose down'
 fi
 
 # firewall-cmd
