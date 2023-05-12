@@ -216,8 +216,8 @@ then
 
     # For the compose plugin.  Gets overwritten if docker-compose still exists
     alias dc='docker compose'
-    alias dcu="docker compose pull && docker-compose up -d"
-    alias dcr="docker compose down && docker-compose up -d"
+    alias dcu="docker compose pull && docker compose up -d"
+    alias dcr="docker compose down && docker compose up -d"
     alias dcd='docker compose down'
 fi
 
