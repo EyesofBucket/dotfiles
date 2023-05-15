@@ -1,7 +1,7 @@
 {
   "version": 2,
   "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
-  "console_title_template": "{{.HostName}} ({{.PWD}})",
+  "console_title_template": "{{if .Env.TitleHost}}{{.Env.TitleHost}}{{else}}{{.HostName}}{{end}} ({{.PWD}})",
   "palette": {
     "darkgrey": "#222222",
     "grey": "#666666"
