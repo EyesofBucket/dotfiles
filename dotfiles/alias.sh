@@ -154,3 +154,12 @@ then
     alias fwrs='sudo firewall-cmd --remove-service'
     alias fwrsp='sudo firewall-cmd --permanent --remove-service'
 fi
+
+# iwctl
+if which iwctl >/dev/null 2>&1
+then
+    alias iwc='iwctl station wlan0 connect'
+    alias iwch='iwctl station wlan0 connect-hidden'
+    alias iwd='iwctl station wlan0 disconnect'
+    alias iws='iwctl station wlan0 scan && iwctl station wlan0 get-networks'
+fi
