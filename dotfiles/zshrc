@@ -28,10 +28,10 @@ eval "$(oh-my-posh init zsh --config ~/.eyesofbucket.omp.json)"
 # oh-my-zsh setup
 source $ZSH/oh-my-zsh.sh
 
-if [ -f $XDG_CONFIG_HOME/zsh/aliases.sh ]; then
+if [ -f $XDG_CONFIG_HOME/bvkt/alias.sh ]; then
     source $XDG_CONFIG_HOME/bvkt/alias.sh
 fi
 
-if [ -f $XDG_CONFIG_HOME/zsh/custom.sh ]; then
+if [ -f $XDG_CONFIG_HOME/bvkt/custom.sh ]; then
     source $XDG_CONFIG_HOME/bvkt/custom.sh
 fi
