@@ -1,3 +1,5 @@
+let $PAGER=''
+
 set nu
 nnoremap <Space> i_<Esc>r
 
