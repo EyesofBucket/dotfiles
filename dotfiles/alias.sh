@@ -7,6 +7,7 @@
 
 alias ez='exec zsh'
 
+alias watch='watch '
 alias sudo='sudo '
 alias please='sudo '
 alias svim='sudoedit'
