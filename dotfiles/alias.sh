@@ -42,9 +42,9 @@ then
     alias pmi='podman image'
     alias pmip='podman image prune'
 
-    alias pps='podman ps --format '\''table {{.Names}}\t{{.Status}}\t{{.Size}}\t{{.Ports}}'\'' -a | (read -r; printf "%s\n" "$REPLY"; sort)'
-    alias ppq='podman ps --format '\''table {{.Names}}\t{{.Status}}\t{{.Size}}'\'' -a | (read -r; printf "%s\n" "$REPLY"; sort)'
-    alias ppa='podman ps --format '\''table {{.Names}}\t{{.Status}}\t{{.Size}}\t{{.Networks}}\t{{.Ports}}\t{{.Image}}'\'' -a | (read -r; printf "%s\n" "$REPLY"; sort)'
+    alias pps='podman ps --size --format '\''table {{.Names}}\t{{.Status}}\t{{.Size}}\t{{.Ports}}'\'' -a | (read -r; printf "%s\n" "$REPLY"; sort)'
+    alias ppq='podman ps --size --format '\''table {{.Names}}\t{{.Status}}\t{{.Size}}'\'' -a | (read -r; printf "%s\n" "$REPLY"; sort)'
+    alias ppa='podman ps --size --format '\''table {{.Names}}\t{{.Status}}\t{{.Size}}\t{{.Networks}}\t{{.Ports}}\t{{.Image}}'\'' -a | (read -r; printf "%s\n" "$REPLY"; sort)'
 
     alias pin='podman inspect'
     alias pmstart='podman start'
