@@ -8,8 +8,8 @@ RUN apt update; apt upgrade -y; apt install -y git vim zsh curl wget iproute2 ne
 
 RUN sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended;\
     git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions;\
-    sudo wget "https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64" -O /usr/local/bin/oh-my-posh;\
-    sudo chmod +x /usr/local/bin/oh-my-posh;\
+    wget "https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64" -O /usr/local/bin/oh-my-posh;\
+    chmod +x /usr/local/bin/oh-my-posh;\
     curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim;\
     mkdir -p ~/.config/bvkt;\
     wget --no-verbose "https://raw.github.com/eyesofBucket/configs/$branch/dotfiles/custom.sh" -O ~/.config/bvkt/custom.sh;\
