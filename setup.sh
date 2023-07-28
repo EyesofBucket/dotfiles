@@ -1,24 +1,33 @@
 #!/bin/bash
+usage(){
+>&2 cat << EOF
+Usage: setup.sh [-a] [-b branch]
+EOF
+exit 1
+}
 
 branch="main"
 
-while getopts 'ab:h' opt; do
-  case "$opt" in
-    a)
-      all=true
-      ;;
+# Arg validation
+args=$(getopt -o ab:h --long all,branch:,help -- "$@")
+if [[ $? -gt 0 ]]; then
+  usage
+fi
 
-    b)
-      branch="$OPTARG"
-      ;;
-   
-    ?|h)
-      echo "Usage: setup.sh [-a] [-b branch]"
-      exit 1
-      ;;
+# Arg parsing
+eval set -- ${args}
+while :
+do
+  case $1 in
+    -a | --all)    all=true    ; shift   ;;
+    -b | --branch) branch="$2" ; shift 2 ;;
+    -h | --help)   usage       ; shift   ;;
+    # -- means the end of the arguments. Shift and break out of the while loop
+    --) shift; break ;;
+    *) >&2 echo Unsupported option: $1
+       usage ;;
   esac
 done
-shift "$(($OPTIND -1))"
 
 # Install requirements
 PACKAGES='curl wget zsh git vim'
@@ -62,6 +71,7 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.c
 # Run update script
 bash -c "$(curl -fsSL https://raw.github.com/eyesofBucket/configs/$branch/update.sh)" "" -b $branch
 
+# Add config changes that would affect all users
 if [ "$all" = true ]
 then
     sudo wget --no-verbose "https://raw.github.com/eyesofBucket/configs/$branch/dotfiles/sudoers_eyesofbucket" -O /etc/sudoers.d/eyesofbucket

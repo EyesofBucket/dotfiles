@@ -90,3 +90,16 @@
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# Plugins
+
+# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Add wisely, as too many plugins slow down shell startup.
+
+# Uncomment the following line to add to the array of plugins
+# plugins+=() # Insert plugin names separated by a space
+
+# Uncomment the following two lines to remove plugins added in .zshrc
+# rmplugins=() # Insert plugin names separated by a space
+# plugins=( "${plugins[@]/$rmplugins}" )

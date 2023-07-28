@@ -7,6 +7,8 @@
 
 alias ez='exec zsh'
 
+alias help='run-help'
+
 alias watch='watch '
 alias sudo='sudo '
 alias please='sudo '
