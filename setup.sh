@@ -59,14 +59,8 @@ sudo chmod +x /usr/local/bin/oh-my-posh
 # Install vim-plug
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-# Add config files
-wget --no-verbose "https://raw.github.com/eyesofBucket/configs/$branch/dotfiles/zshrc" -O ~/.zshrc
-wget --no-verbose "https://raw.github.com/eyesofBucket/configs/$branch/dotfiles/eyesofbucket.omp.json" -O ~/.eyesofbucket.omp.json
-wget --no-verbose "https://raw.github.com/eyesofBucket/configs/$branch/dotfiles/vimrc" -O ~/.vimrc
-
-# Install vim plugins as listed in the config file
-vim --not-a-term -c "PlugInstall" -c "%w /tmp/vim.log" -c "qa" >/dev/null
-cat /tmp/vim.log
+# Run update script
+bash -c "$(curl -fsSL https://raw.github.com/eyesofBucket/configs/$branch/update.sh)" "" -b $branch
 
 if [ "$all" = true ]
 then
