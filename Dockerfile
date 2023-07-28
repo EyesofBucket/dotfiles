@@ -3,7 +3,7 @@ ARG RUNTIME_BASE_IMAGE=_/ubuntu
 ARG RUNTIME_BASE_TAG=latest
 ARG BRANCH=main
 
-FROM ${RUNTIME_BASE_REGISTRY}/${RUNTIME_BASE_IMAGE}:${RUNTIME_BASE_TAG}
+FROM ${RUNTIME_BASE_REGISTRY}/${RUNTIME_BASE_IMAGE}:${RUNTIME_BASE_TAG} AS runtime
 RUN apt update; apt upgrade -y; apt install -y git vim zsh curl wget iproute2 neofetch cowsay nmap iputils-ping dnsutils
 
 RUN sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended;\
