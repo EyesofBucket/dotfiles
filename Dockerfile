@@ -20,6 +20,6 @@ RUN wget --no-verbose "https://raw.github.com/eyesofBucket/configs/$branch/dotfi
     wget --no-verbose "https://raw.github.com/eyesofBucket/configs/$branch/dotfiles/eyesofbucket.omp.json" -O /root/.eyesofbucket.omp.json;\
     wget --no-verbose "https://raw.github.com/eyesofBucket/configs/$branch/dotfiles/vimrc" -O /root/.vimrc;\
     vim --not-a-term -c "PlugInstall" -c "%w /tmp/vim.log" -c "qa" >/dev/null;\
-    cat /tmp/vim.log;\
+    cat /tmp/vim.log
 
 ENTRYPOINT zsh
