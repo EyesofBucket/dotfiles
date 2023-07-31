@@ -44,9 +44,9 @@ then
     alias pmi='podman image'
     alias pmip='podman image prune'
 
-    alias pps='podman ps --size --format '\''table {{.Names}}\t{{.Status}}\t{{.Size}}\t{{.Ports}}'\'' -a | (read -r; printf "%s\n" "$REPLY"; sort)'
-    alias ppq='podman ps --size --format '\''table {{.Names}}\t{{.Status}}\t{{.Size}}'\'' -a | (read -r; printf "%s\n" "$REPLY"; sort)'
-    alias ppa='podman ps --size --format '\''table {{.Names}}\t{{.Status}}\t{{.Size}}\t{{.Networks}}\t{{.Ports}}\t{{.Image}}'\'' -a | (read -r; printf "%s\n" "$REPLY"; sort)'
+    alias pps='podman ps --size --format '\''table {{.Names}}\t{{.Status}}\t{{.Ports}}'\'' -a | (read -r; printf "%s\n" "$REPLY"; sort)'
+    alias ppq='podman ps --size --format '\''table {{.Names}}\t{{.Status}}'\'' -a | (read -r; printf "%s\n" "$REPLY"; sort)'
+    alias ppa='podman ps --size --format '\''table {{.Names}}\t{{.Status}}\t{{.Networks}}\t{{.Ports}}\t{{.Image}}'\'' -a | (read -r; printf "%s\n" "$REPLY"; sort)'
 
     alias pin='podman inspect'
     alias pmstart='podman start'
@@ -67,9 +67,9 @@ then
     alias spmi='sudo podman image'
     alias spmip='sudo podman image prune'
 
-    alias spps='sudo podman ps --size --format '\''table {{.Names}}\t{{.Status}}\t{{.Size}}\t{{.Ports}}'\'' -a | (read -r; printf "%s\n" "$REPLY"; sort)'
-    alias sppq='sudo podman ps --size --format '\''table {{.Names}}\t{{.Status}}\t{{.Size}}'\'' -a | (read -r; printf "%s\n" "$REPLY"; sort)'
-    alias sppa='sudo podman ps --size --format '\''table {{.Names}}\t{{.Status}}\t{{.Size}}\t{{.Networks}}\t{{.Ports}}\t{{.Image}}'\'' -a | (read -r; printf "%s\n" "$REPLY"; sort)'
+    alias spps='sudo podman ps --size --format '\''table {{.Names}}\t{{.Status}}\t{{.Ports}}'\'' -a | (read -r; printf "%s\n" "$REPLY"; sort)'
+    alias sppq='sudo podman ps --size --format '\''table {{.Names}}\t{{.Status}}'\'' -a | (read -r; printf "%s\n" "$REPLY"; sort)'
+    alias sppa='sudo podman ps --size --format '\''table {{.Names}}\t{{.Status}}\t{{.Networks}}\t{{.Ports}}\t{{.Image}}'\'' -a | (read -r; printf "%s\n" "$REPLY"; sort)'
 
     alias spin='sudo podman inspect'
     alias spmstart='sudo podman start'
