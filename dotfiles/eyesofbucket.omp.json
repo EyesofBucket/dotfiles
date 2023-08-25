@@ -53,7 +53,7 @@
             "{{if contains \"redhat\" .OS}}p:darkgrey{{end}}",
             "{{if contains \"fedora\" .OS}}#FFFFFF{{end}}",
             "{{if contains \"windows\" .OS}}#FFFFFF{{end}}",
-            "{{if contains \"linuxmint\" .OS}}#FFFFFF{{end}}"
+            "{{if contains \"linuxmint\" .OS}}#FFFFFF{{end}}",
             "{{if contains \"arch\" .OS}}#333333{{end}}"
           ],
           "properties": {
