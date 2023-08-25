@@ -27,7 +27,7 @@ autoload run-help
 plugins=(git sudo dirhistory history zsh-autosuggestions jsontools)
 
 # oh-my-posh setup
-eval "$(oh-my-posh init zsh --config ~/.eyesofbucket.omp.json)"
+eval "$(oh-my-posh init zsh --config ~/.config/bvkt/eyesofbucket.omp.json)"
 
 # oh-my-zsh setup
 source $ZSH/oh-my-zsh.sh
