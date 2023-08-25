@@ -54,7 +54,7 @@
             "{{if contains \"fedora\" .OS}}#FFFFFF{{end}}",
             "{{if contains \"windows\" .OS}}#FFFFFF{{end}}",
             "{{if contains \"linuxmint\" .OS}}#FFFFFF{{end}}",
-            "{{if contains \"arch\" .OS}}#333333{{end}}"
+            "{{if contains \"arch\" .OS}}#FFFFFF{{end}}"
           ],
           "properties": {
             "redhat": "\udb84\udd1b",
