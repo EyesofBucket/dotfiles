@@ -1,5 +1,11 @@
 #!/bin/bash
 
+sudo=""
+if [ "$EUID" -ne 0 ]
+  then
+  sudo="sudo "
+fi
+
 branch="main"
 
 while getopts 'ab:h' opt; do
@@ -41,6 +47,6 @@ vim --not-a-term -c "PlugInstall" -c "%w /tmp/vim.log" -c "qa" >/dev/null
 cat /tmp/vim.log
 
 if [ "$all" = true ]; then
-    sudo wget --no-verbose "https://raw.github.com/eyesofBucket/configs/$branch/dotfiles/sudoers_eyesofbucket" -O /etc/sudoers.d/eyesofbucket
-    sudo chmod 440 /etc/sudoers.d/eyesofbucket
+    $(sudo)wget --no-verbose "https://raw.github.com/eyesofBucket/configs/$branch/dotfiles/sudoers_eyesofbucket" -O /etc/sudoers.d/eyesofbucket
+    $(sudo)chmod 440 /etc/sudoers.d/eyesofbucket
 fi
