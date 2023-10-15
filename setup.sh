@@ -72,4 +72,4 @@ chmod a+rx /usr/local/bin/oh-my-posh
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 # Run update script
-./update.sh -b $branch $all
+./update.sh $all
