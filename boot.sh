@@ -1,7 +1,7 @@
 #!/bin/bash
 
 branch="main"
-bvkt="${$HOME}/.bvkt"
+bvkt="$HOME/.bvkt"
 
 usage(){
 >&2 cat << EOF
