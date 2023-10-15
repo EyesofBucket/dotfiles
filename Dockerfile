@@ -10,9 +10,10 @@ ARG USER=root
 
 RUN apt update;\
     apt upgrade -y;\
-    apt install -y iproute2 neofetch cowsay nmap iputils-ping dnsutils locales;\
-    apt install -y locales-all;\
+    apt install -y locales locales-all;\
+    apt clean -y;\
     locale-gen en_US.UTF-8;\
+    local-gen --purge en_US.UTF-8;\
     cd /bvkt;\
     bash -c ./setup.sh
 
