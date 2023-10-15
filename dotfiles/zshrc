@@ -22,6 +22,10 @@ export XDG_CONFIG_HOME=$HOME/.config
 export XDG_DATA_HOME=$HOME/.local/share
 export XDG_STATE_HOME=$HOME/.local/state
 
+# zsh help fix
+export HELPDIR=/usr/share/zsh/"${ZSH_VERSION}"/help
+autoload run-help
+
 # Which plugins would you like to load?
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
@@ -29,7 +33,7 @@ export XDG_STATE_HOME=$HOME/.local/state
 plugins=(git sudo dirhistory history zsh-autosuggestions jsontools)
 
 # oh-my-posh setup
-eval "$(oh-my-posh init zsh --config ~/.eyesofbucket.omp.json)"
+eval "$(oh-my-posh init zsh --config ~/.config/bvkt/eyesofbucket.omp.json)"
 
 # oh-my-zsh setup
 source $ZSH/oh-my-zsh.sh

@@ -5,6 +5,10 @@
 # bash -c "$(curl -fsSL https://raw.github.com/eyesofBucket/configs/main/update.sh)" ""
 # =====================================================================================
 
+alias ez='exec zsh'
+
+alias help='run-help'
+
 alias watch='watch '
 alias sudo='sudo '
 alias please='sudo '
@@ -40,9 +44,9 @@ then
     alias pmi='podman image'
     alias pmip='podman image prune'
 
-    alias pps='podman ps --format '\''table {{.Names}}\t{{.Status}}\t{{.Ports}}'\'' -a | (read -r; printf "%s\n" "$REPLY"; sort)'
-    alias ppq='podman ps --format '\''table {{.Names}}\t{{.Status}}'\'' -a | (read -r; printf "%s\n" "$REPLY"; sort)'
-    alias ppa='podman ps --format '\''table {{.Names}}\t{{.Status}}\t{{.Networks}}\t{{.Ports}}\t{{.Image}}'\'' -a | (read -r; printf "%s\n" "$REPLY"; sort)'
+    alias pps='podman ps --size --format '\''table {{.Names}}\t{{.Status}}\t{{.Ports}}'\'' -a | (read -r; printf "%s\n" "$REPLY"; sort)'
+    alias ppq='podman ps --size --format '\''table {{.Names}}\t{{.Status}}'\'' -a | (read -r; printf "%s\n" "$REPLY"; sort)'
+    alias ppa='podman ps --size --format '\''table {{.Names}}\t{{.Status}}\t{{.Networks}}\t{{.Ports}}\t{{.Image}}'\'' -a | (read -r; printf "%s\n" "$REPLY"; sort)'
 
     alias pin='podman inspect'
     alias pmstart='podman start'
@@ -63,9 +67,9 @@ then
     alias spmi='sudo podman image'
     alias spmip='sudo podman image prune'
 
-    alias spps='sudo podman ps --format '\''table {{.Names}}\t{{.Status}}\t{{.Ports}}'\'' -a | (read -r; printf "%s\n" "$REPLY"; sort)'
-    alias sppq='sudo podman ps --format '\''table {{.Names}}\t{{.Status}}'\'' -a | (read -r; printf "%s\n" "$REPLY"; sort)'
-    alias sppa='sudo podman ps --format '\''table {{.Names}}\t{{.Status}}\t{{.Networks}}\t{{.Ports}}\t{{.Image}}'\'' -a | (read -r; printf "%s\n" "$REPLY"; sort)'
+    alias spps='sudo podman ps --size --format '\''table {{.Names}}\t{{.Status}}\t{{.Ports}}'\'' -a | (read -r; printf "%s\n" "$REPLY"; sort)'
+    alias sppq='sudo podman ps --size --format '\''table {{.Names}}\t{{.Status}}'\'' -a | (read -r; printf "%s\n" "$REPLY"; sort)'
+    alias sppa='sudo podman ps --size --format '\''table {{.Names}}\t{{.Status}}\t{{.Networks}}\t{{.Ports}}\t{{.Image}}'\'' -a | (read -r; printf "%s\n" "$REPLY"; sort)'
 
     alias spin='sudo podman inspect'
     alias spmstart='sudo podman start'
@@ -83,13 +87,15 @@ fi
 if which podman-compose >/dev/null 2>&1
 then
     alias pc='podman-compose'
-    alias pcu='podman-compose pull && podman-compose up -d'
+    alias pcu='podman-compose up -d'
+    alias pcp='podman-compose pull && podman-compose up -d'
     alias pcr='podman-compose down && podman-compose up -d'
     alias pcd='podman-compose down'
 
     # sudo podman-compose
     alias spc='sudo /usr/local/bin/podman-compose'
-    alias spcu='sudo /usr/local/bin/podman-compose pull && sudo /usr/local/bin/podman-compose up -d'
+    alias spcu='sudo /usr/local/bin/podman-compose up -d'
+    alias spcp='sudo /usr/local/bin/podman-compose pull && sudo /usr/local/bin/podman-compose up -d'
     alias spcr='sudo /usr/local/bin/podman-compose down && sudo /usr/local/bin/podman-compose up -d'
     alias spcd='sudo /usr/local/bin/podman-compose down'
 fi
@@ -103,9 +109,15 @@ then
     alias di='docker image'
     alias dip='docker image prune'
 
-    alias dps='docker ps --format '\''table {{.Names}}\t{{.Status}}\t{{.Ports}}'\'' -a | (read -r; printf "%s\n" "$REPLY"; sort)'
-    alias dpq='docker ps --format '\''table {{.Names}}\t{{.Status}}'\'' -a | (read -r; printf "%s\n" "$REPLY"; sort)'
-    alias dpa='docker ps --format '\''table {{.Names}}\t{{.Status}}\t{{.Networks}}\t{{.Ports}}\t{{.Image}}'\'' -a | (read -r; printf "%s\n" "$REPLY"; sort)'
+    alias dps='docker ps --format '\''table {{.Names}}\t{{.Status}}\t{{.Size}}\t{{.Ports}}'\'' -a | (read -r; printf "%s\n" "$REPLY"; sort)'
+    alias dpq='docker ps --format '\''table {{.Names}}\t{{.Status}}\t{{.Size}}'\'' -a | (read -r; printf "%s\n" "$REPLY"; sort)'
+    alias dpa='docker ps --format '\''table {{.Names}}\t{{.Status}}\t{{.Size}}\t{{.Networks}}\t{{.Ports}}\t{{.Image}}'\'' -a | (read -r; printf "%s\n" "$REPLY"; sort)'
+
+    alias drm='docker rm'
+    # Removes all stopped containers
+    alias drma='echo -n "Deleting all stopped containers. Are you sure? [y/N]: ";read -k 1 -r x;echo;if [[ $x =~ ^[Yy]$ ]];then;docker ps -a --format "{{.ID}}" | while read l;do;docker rm $l;done;fi'
+    # Removes ALL containers
+    alias drmA='echo -n "Deleting ALL containers. Are you sure? [y/N]: ";read -k 1 -r x;echo;if [[ $x =~ ^[Yy]$ ]];then;docker ps -a --format "{{.ID}}" | while read l;do;docker rm -f $l;done;fi'
 
     alias din='docker inspect'
     alias dstart='docker start'
@@ -120,7 +132,8 @@ then
 
     # For the compose plugin.  Gets overwritten if docker-compose still exists
     alias dc='docker compose'
-    alias dcu='docker compose pull && docker compose up -d'
+    alias dcu='docker compose up -d'
+    alias dcp='docker compose pull && docker compose up -d'
     alias dcr='docker compose down && docker compose up -d'
     alias dcd='docker compose down'
 fi
@@ -129,7 +142,8 @@ fi
 if which docker-compose >/dev/null 2>&1
 then
     alias dc='docker-compose'
-    alias dcu='docker-compose pull && docker-compose up -d'
+    alias dcu='docker-compose up -d'
+    alias dcp='docker-compose pull && docker-compose up -d'
     alias dcr='docker-compose down && docker-compose up -d'
     alias dcd='docker-compose down'
 fi

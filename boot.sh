@@ -11,6 +11,7 @@ exit 1
 }
 
 # Arg validation
+<<<<<<< HEAD
 args=$(getopt -o ab:ih --long all,branch:,init,help -- "$@")
 if [[ $? -gt 0 ]]; then
   usage

@@ -43,17 +43,22 @@
             "{{if contains \"ubuntu\" .OS}}#DD4814{{end}}",
             "{{if contains \"redhat\" .OS}}#EE0000{{end}}",
             "{{if contains \"fedora\" .OS}}#51A2DA{{end}}",
-            "{{if contains \"windows\" .OS}}#00A2ED{{end}}"
+            "{{if contains \"windows\" .OS}}#00A2ED{{end}}",
+            "{{if contains \"linuxmint\" .OS}}#92B662{{end}}",
+            "{{if contains \"arch\" .OS}}#1793D1{{end}}"
           ],
           "foreground_templates": [
             "{{if contains \"darwin\" .OS}}p:grey{{end}}",
             "{{if contains \"ubuntu\" .OS}}#FFFFFF{{end}}",
             "{{if contains \"redhat\" .OS}}p:darkgrey{{end}}",
             "{{if contains \"fedora\" .OS}}#FFFFFF{{end}}",
-            "{{if contains \"windows\" .OS}}#FFFFFF{{end}}"
+            "{{if contains \"windows\" .OS}}#FFFFFF{{end}}",
+            "{{if contains \"linuxmint\" .OS}}#FFFFFF{{end}}",
+            "{{if contains \"arch\" .OS}}#FFFFFF{{end}}"
           ],
           "properties": {
-            "redhat": "\udb84\udd1b"
+            "redhat": "\udb84\udd1b",
+            "linuxmint": "\udb82\udced"
           }
         },
         {
