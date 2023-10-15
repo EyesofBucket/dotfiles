@@ -1,52 +1,61 @@
 #!/bin/bash
 
-sudo=""
-if [ "$EUID" -ne 0 ]
-  then
-  sudo="sudo "
+branch="main"
+config_dir="$HOME/.config/bvkt"
+
+usage(){
+>&2 cat << EOF
+Usage: update.sh [-a]
+EOF
+exit 1
+}
+
+# Arg validation
+args=$(getopt -o a:h --long all,help -- "$@")
+if [[ $? -gt 0 ]]; then
+  usage
 fi
 
-branch="main"
-
-while getopts 'ab:h' opt; do
-  case "$opt" in
-    a)
-      all=true
-      ;;
-
-    b)
-      branch="$OPTARG"
-      ;;
-   
-    ?|h)
-      echo "Usage: update.sh [-a] [-b branch]"
-      exit 1
-      ;;
+# Arg parsing
+eval set -- ${args}
+while :
+do
+  case $1 in
+    -a | --all)  all=true ; shift ;;
+    -h | --help) usage    ; shift ;;
+    # -- means the end of the arguments. Shift and break out of the while loop
+    --) shift; break ;;
+    *) >&2 echo Unsupported option: $1
+       usage ;;
   esac
 done
-shift "$(($OPTIND -1))"
+
+if [ "$EUID" -ne 0 ] && [ "$all" = true ]; then
+  echo "Must be run as root!"
+  exit 1
+fi
 
 # Add bvkt dir if it hasn't already been created
-if [ ! -f ~/.config/bvkt ]; then
-  mkdir -p ~/.config/bvkt
+if [ ! -f $config_dir ]; then
+  mkdir -p $config_dir 
 fi
 
 # Add custom config template if it hasn't already been created
-if [ ! -f ~/.config/bvkt/custom.sh ]; then
-  wget --no-verbose "https://raw.github.com/eyesofBucket/configs/$branch/dotfiles/custom.sh" -O ~/.config/bvkt/custom.sh
+if [ ! -f $config_dir/custom.sh ]; then
+  cp ./dotfiles/custom.sh $config_dir/custom.sh
 fi
 
 # Add config files
-wget --no-verbose "https://raw.github.com/eyesofBucket/configs/$branch/dotfiles/zshrc" -O ~/.zshrc
-wget --no-verbose "https://raw.github.com/eyesofBucket/configs/$branch/dotfiles/alias.sh" -O ~/.config/bvkt/alias.sh
-wget --no-verbose "https://raw.github.com/eyesofBucket/configs/$branch/dotfiles/eyesofbucket.omp.json" -O ~/.config/bvkt/eyesofbucket.omp.json
-wget --no-verbose "https://raw.github.com/eyesofBucket/configs/$branch/dotfiles/vimrc" -O ~/.vimrc
+cp ./dotfiles/zshrc $HOME/.zshrc
+cp ./dotfiles/vimrc $HOME/.vimrc
+cp ./dotfiles/alias.sh $config_dir/alias.sh
+cp ./dotfiles/eyesofbucket.omp.json $config_dir/eyesofbucket.omp.json
 
 # Install vim plugins as listed in the config file
 vim --not-a-term -c "PlugInstall" -c "%w /tmp/vim.log" -c "qa" >/dev/null
 cat /tmp/vim.log
 
 if [ "$all" = true ]; then
-    $(sudo)wget --no-verbose "https://raw.github.com/eyesofBucket/configs/$branch/dotfiles/sudoers_eyesofbucket" -O /etc/sudoers.d/eyesofbucket
-    $(sudo)chmod 440 /etc/sudoers.d/eyesofbucket
+  cp ./dotfiles/sudoers_eyesofbucket -O /etc/sudoers.d/eyesofbucket
+  chmod 440 /etc/sudoers.d/eyesofbucket
 fi
