@@ -1,7 +1,6 @@
 #!/bin/bash
 
 branch="main"
-sudo=""
 all=""
 
 usage(){
@@ -10,11 +9,6 @@ Usage: setup.sh [-a]
 EOF
 exit 1
 }
-
-if [ "$EUID" -ne 0 ]
-  then
-  sudo="sudo "
-fi
 
 # Arg validation
 args=$(getopt -o a:h --long all,help -- "$@")
@@ -36,27 +30,32 @@ do
   esac
 done
 
+if [ "$EUID" -ne 0 ]; then
+  echo "Must be run as root!"
+  exit 1
+fi
+
 # Install requirements
 PACKAGES='curl wget zsh git vim'
 
 # Debian
 if which apt >/dev/null; then
-  $($sudo)apt install -y $PACKAGES
+  apt install -y $PACKAGES
 
 # Fedora
 elif which yum >/dev/null; then
-  $($sudo)yum install -y $PACKAGES
+  yum install -y $PACKAGES
 
 # Arch
 elif which pacman >/dev/null; then
-  $($sudo)pacman -S --noconfirm $PACKAGES
+  pacman -S --noconfirm $PACKAGES
 else
   printf "\033[0;31mUnable to install requirements: No package manager found.\033[0m\n" 1>&2
   exit 1
 fi
 
 # Set default shell
-$($sudo)usermod "$USER" -s "$(which zsh)"
+usermod "$USER" -s "$(which zsh)"
 
 # Install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
@@ -66,8 +65,8 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 
 # Install oh-my-posh
 declare -A arch=( ['x86_64']='amd64' ['aarch64']='arm64' ['armv71']='arm' )
-$($sudo)wget "https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-${arch[$(uname -m)]}" -O /usr/local/bin/oh-my-posh
-$($sudo)chmod a+rx /usr/local/bin/oh-my-posh
+wget "https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-${arch[$(uname -m)]}" -O /usr/local/bin/oh-my-posh
+chmod a+rx /usr/local/bin/oh-my-posh
 
 # Install vim-plug
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim

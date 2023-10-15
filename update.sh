@@ -1,13 +1,6 @@
 #!/bin/bash
 
-sudo=""
-if [ "$EUID" -ne 0 ]
-  then
-  sudo="sudo "
-fi
-
 branch="main"
-sudo=""
 config_dir="$HOME/.config/bvkt"
 
 usage(){
@@ -16,11 +9,6 @@ Usage: update.sh [-a]
 EOF
 exit 1
 }
-
-if [ "$EUID" -ne 0 ]
-  then
-  sudo="sudo "
-fi
 
 # Arg validation
 args=$(getopt -o a:h --long all,help -- "$@")
@@ -41,6 +29,11 @@ do
        usage ;;
   esac
 done
+
+if [ "$EUID" -ne 0 ] && [ "$all" = true ]; then
+  echo "Must be run as root!"
+  exit 1
+fi
 
 # Add bvkt dir if it hasn't already been created
 if [ ! -f $config_dir ]; then
@@ -63,6 +56,6 @@ vim --not-a-term -c "PlugInstall" -c "%w /tmp/vim.log" -c "qa" >/dev/null
 cat /tmp/vim.log
 
 if [ "$all" = true ]; then
-  $($sudo)cp ./dotfiles/sudoers_eyesofbucket -O /etc/sudoers.d/eyesofbucket
-  $($sudo)chmod 440 /etc/sudoers.d/eyesofbucket
+  cp ./dotfiles/sudoers_eyesofbucket -O /etc/sudoers.d/eyesofbucket
+  chmod 440 /etc/sudoers.d/eyesofbucket
 fi
