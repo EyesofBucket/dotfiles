@@ -11,7 +11,7 @@ exit 1
 }
 
 # Arg validation
-args=$(getopt -o a:h --long all,help -- "$@")
+args=$(getopt -o ah --long all,help -- "$@")
 if [[ $? -gt 0 ]]; then
   usage
 fi
