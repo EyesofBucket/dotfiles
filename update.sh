@@ -56,6 +56,6 @@ vim --not-a-term -c "PlugInstall" -c "%w /tmp/vim.log" -c "qa" >/dev/null
 cat /tmp/vim.log
 
 if [ "$all" = true ]; then
-  cp ./dotfiles/sudoers_eyesofbucket -O /etc/sudoers.d/eyesofbucket
+  cp ./dotfiles/sudoers_eyesofbucket /etc/sudoers.d/eyesofbucket
   chmod 440 /etc/sudoers.d/eyesofbucket
 fi
