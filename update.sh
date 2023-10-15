@@ -1,5 +1,11 @@
 #!/bin/bash
 
+sudo=""
+if [ "$EUID" -ne 0 ]
+  then
+  sudo="sudo "
+fi
+
 branch="main"
 sudo=""
 config_dir="$HOME/.config/bvkt"
