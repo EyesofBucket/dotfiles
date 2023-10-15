@@ -29,11 +29,8 @@ jobs:
           cd $GITHUB_WORKSPACE
           chmod a+x ./*.sh
 
-      - name: Run setup.sh
-        run: ./setup.sh -a -b $GITHUB_REF_NAME
-
-      - name: Run update.sh
-        run: ./update.sh -a -b $GITHUB_REF_NAME
+      - name: Run boot.sh
+        run: ./boot.sh -a -b $GITHUB_REF_NAME
 
       - name: Evaluate the environment
         run: |

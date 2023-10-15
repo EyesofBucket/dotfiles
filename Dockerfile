@@ -10,7 +10,7 @@ ARG USER=root
 
 RUN apt update;\
     apt upgrade -y;\
-    apt install -y git vim zsh curl wget iproute2 neofetch cowsay nmap iputils-ping dnsutils locales;\
+    apt install -y iproute2 neofetch cowsay nmap iputils-ping dnsutils locales;\
     apt install -y locales-all;\
     locale-gen en_US.UTF-8;\
     cd /bvkt;\
