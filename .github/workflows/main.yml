@@ -30,7 +30,7 @@ jobs:
           chmod a+x ./*.sh
 
       - name: Run boot.sh
-        run: ./boot.sh -a -i -b "$GITHUB_REF_NAME"
+        run: sudo ./boot.sh -a -i -b "$GITHUB_REF_NAME"
 
       - name: Evaluate the environment
         run: |
