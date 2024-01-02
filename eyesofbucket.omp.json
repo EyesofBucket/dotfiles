@@ -78,6 +78,13 @@
           "foreground": "p:yellow"
         },
         {
+          "type": "text",
+          "style": "plain",
+          "template": "\u2800",
+          "background": "p:surface0",
+          "foreground": "p:subtext0"
+        },
+        {
           "type": "session",
           "style": "plain",
           "template": " {{ .UserName }}@{{ .HostName }} ",
