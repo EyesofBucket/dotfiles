@@ -38,6 +38,17 @@ eval "$(oh-my-posh init zsh --config ~/.config/bvkt/eyesofbucket.omp.json)"
 # oh-my-zsh setup
 source $ZSH/oh-my-zsh.sh
 
+unsetopt autopushd
+
+function set_poshcontext() {
+    depth=$(dirs -p | tail -n +2 | wc -l)
+    if [ "$depth" -ne "0" ]; then
+        export BVKT_DEPTH="${depth}"
+        return
+    fi
+    unset BVKT_DEPTH
+}
+
 if [ -f $XDG_CONFIG_HOME/bvkt/alias.sh ]; then
     source $XDG_CONFIG_HOME/bvkt/alias.sh
 fi

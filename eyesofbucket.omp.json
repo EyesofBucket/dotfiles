@@ -3,8 +3,32 @@
   "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
   "console_title_template": "{{if .Env.TITLE_HOST}}{{.Env.TITLE_HOST}}{{else}}{{.HostName}}{{end}} ({{.PWD}})",
   "palette": {
-    "darkgrey": "#222222",
-    "grey": "#666666"
+    "rosewater": "#f5e0dc",
+    "flamingo":"#f2cdcd",
+    "pink": "#f5c2e7",
+    "mauve": "#cba6f7",
+    "red": "#f38ba8",
+    "maroon": "#eba0ac",
+    "peach": "#fab387",
+    "yellow": "#f9e2af",
+    "green": "#a6e3a1",
+    "teal": "#94e2d5",
+    "sky": "#89dceb",
+    "sapphire": "#74c7ec",
+    "blue": "#89b4fa",
+    "lavender": "#b4befe",
+    "text": "#cdd6f4",
+    "subtext1": "#bac2de",
+    "subtext0": "#a6adc8",
+    "overlay2": "#9399b2",
+    "overlay1": "#7f849c",
+    "overlay0": "#6c7086",
+    "surface2": "#585b70",
+    "surface1": "#45475a",
+    "surface0": "#313244",
+    "base": "#1e1e2e",
+    "mantle": "#181825",
+    "crust": "#11111b"
   },
   "blocks": [
     {
@@ -12,49 +36,20 @@
       "alignment": "left",
       "segments": [
         {
-          "type": "session",
-          "style": "plain",
-          "template": " {{ if .SSHSession }}\uf817 {{ end }}",
-          "background": "yellow",
-          "foreground": "p:darkgrey"
-        },
-        {
-          "type": "os",
-          "style": "plain",
-          "template": " {{ if .WSL }}\uf68e {{ end }}",
-          "background": "yellow",
-          "foreground": "p:darkgrey"
-        },
-        {
-          "type": "root",
-          "style": "plain",
-          "template": "\uf0e7",
-          "background": "#ffcc88",
-          "foreground": "p:darkgrey"
-        },
-        {
           "type": "os",
           "style": "plain",
           "template": " {{.Icon}} ",
-          "background": "p:darkgrey",
-          "foreground": "p:grey",
-          "background_templates": [
-            "{{if contains \"darwin\" .OS}}#FFFFFF{{end}}",
-            "{{if contains \"ubuntu\" .OS}}#DD4814{{end}}",
-            "{{if contains \"redhat\" .OS}}#EE0000{{end}}",
-            "{{if contains \"fedora\" .OS}}#51A2DA{{end}}",
-            "{{if contains \"windows\" .OS}}#00A2ED{{end}}",
-            "{{if contains \"linuxmint\" .OS}}#92B662{{end}}",
-            "{{if contains \"arch\" .OS}}#1793D1{{end}}"
-          ],
+          "background": "p:surface0",
+          "foreground": "p:text",
           "foreground_templates": [
-            "{{if contains \"darwin\" .OS}}p:grey{{end}}",
-            "{{if contains \"ubuntu\" .OS}}#FFFFFF{{end}}",
-            "{{if contains \"redhat\" .OS}}p:darkgrey{{end}}",
-            "{{if contains \"fedora\" .OS}}#FFFFFF{{end}}",
-            "{{if contains \"windows\" .OS}}#FFFFFF{{end}}",
-            "{{if contains \"linuxmint\" .OS}}#FFFFFF{{end}}",
-            "{{if contains \"arch\" .OS}}#FFFFFF{{end}}"
+            "{{if contains \"darwin\" .OS}}p:text{{end}}",
+            "{{if contains \"ubuntu\" .OS}}p:peach{{end}}",
+            "{{if contains \"redhat\" .OS}}p:red{{end}}",
+            "{{if contains \"fedora\" .OS}}p:blue{{end}}",
+            "{{if contains \"windows\" .OS}}p:sky{{end}}",
+            "{{if contains \"linuxmint\" .OS}}p:green{{end}}",
+            "{{if contains \"arch\" .OS}}p:sapphire{{end}}",
+            "{{if contains \"nixos\" .OS}}p:sapphire{{end}}"
           ],
           "properties": {
             "redhat": "\udb84\udd1b",
@@ -64,16 +59,37 @@
         {
           "type": "session",
           "style": "plain",
+          "template": " {{ if .SSHSession }}\udb81\udef3 {{ end }}",
+          "background": "p:surface0",
+          "foreground": "p:mauve"
+        },
+        {
+          "type": "os",
+          "style": "plain",
+          "template": " {{ if .WSL }}\uf68e {{ end }}",
+          "background": "p:surface0",
+          "foreground": "p:flamingo"
+        },
+        {
+          "type": "root",
+          "style": "plain",
+          "template": "\uf0e7",
+          "background": "p:surface0",
+          "foreground": "p:yellow"
+        },
+        {
+          "type": "session",
+          "style": "plain",
           "template": " {{ .UserName }}@{{ .HostName }} ",
-          "background": "p:darkgrey",
-          "foreground": "p:grey"
+          "background": "p:surface1",
+          "foreground": "p:subtext1"
         },
         {
           "type": "path",
           "style": "plain",
           "template": " {{ .Path }} ",
-          "background": "#444444",
-          "foreground": "#cccccc",
+          "background": "p:surface2",
+          "foreground": "p:text",
           "properties": {
             "folder_icon": "\u2026",
             "style": "powerlevel",
@@ -81,17 +97,24 @@
           }
         },
         {
+            "type": "text",
+            "style": "plain",
+            "background": "p:mauve",
+            "foreground": "p:crust",
+            "template": "{{if .Env.BVKT_DEPTH}} \uf482 {{.Env.BVKT_DEPTH}} {{end}}"
+        },
+        {
           "type": "git",
           "style": "plain",
           "template": " {{ .HEAD }} ",
-          "background": "#f14e32",
-          "foreground": "#f0efe7",
+          "background": "p:peach",
+          "foreground": "p:base",
           "properties": {
             "branch_icon": "\ue725 ",
             "cherry_pick_icon": "\ue29b ",
             "commit_icon": "\uf417 ",
-            "fetch_status": false,
-            "fetch_upstream_icon": false,
+            "fetch_status": true,
+            "fetch_upstream_icon": true,
             "merge_icon": "\ue727 ",
             "no_commits_icon": "\uf594 ",
             "rebase_icon": "\ue728 ",
@@ -149,15 +172,15 @@
           "type": "exit",
           "style": "plain",
           "template": "{{ if gt .Code 0 }} {{ .Code }} {{ end }}",
-          "background": "#880000",
-          "foreground": "#ff8888"
+          "background": "p:red",
+          "foreground": "p:base"
         },
         {
           "type": "executiontime",
           "style": "plain",
           "template": " {{ .FormattedMs }} ",
-          "background": "#007ACC",
-          "foreground": "#FFFFFF",
+          "background": "p:sapphire",
+          "foreground": "p:base",
           "properties": {
             "style": "austin",
             "threshold": 321
@@ -174,7 +197,7 @@
           "type": "text",
           "style": "plain",
           "template": "\u276f ",
-          "foreground": "#007ACC"
+          "foreground": "p:sapphire"
         }
       ]
     }
