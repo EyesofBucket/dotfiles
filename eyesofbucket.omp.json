@@ -203,7 +203,7 @@
         {
           "type": "text",
           "style": "plain",
-          "template": "\uf06c ",
+          "template": "\uf06c  ",
           "foreground": "p:green"
         }
       ]
