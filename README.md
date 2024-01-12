@@ -34,8 +34,6 @@ Uses the fantastic [Oh My Zsh](https://github.com/ohmyzsh/ohmyzsh) and a handful
 ### [Oh My Posh](https://github.com/JanDeDobbeleer/oh-my-posh)
 I use a custom posh theme to provide a nice, cross-platform solution to theming.  It even works on Powershell!
 
-### [Neovim](https://github.com/neovim/neovim)
-Very early stages on this.  Working to build a custom environment, one whose plugins and features will be listed here soon.
-
 ### [Tmux](https://github.com/tmux/tmux)
-Like Neovim, this one is also new to me.  Will update soon with the major changes and plugins used.
+
+### Vim
