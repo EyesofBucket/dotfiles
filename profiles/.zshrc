@@ -1,6 +1,6 @@
 zshdir="$HOME/.config/bvkt/zsh"
 
-if [ -f $zshdir ]; then
+if [ -d $zshdir ]; then
     for f in $zshdir/*.sh; do source $f; done
 fi
 

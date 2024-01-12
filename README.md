@@ -5,15 +5,18 @@ Designed to be a quick and easy way to set up my ideal linux user environment, i
 
 ...Or at least for now.  I'm always looking for new ways to optimize my workflow, and as such this repo is ever-changing. Not to worry, though! most updates can be applied by simply using the update script.  The update script excludes installers and downloads and focuses primarily on config files stored in this repo.
 
-### Setup
-For initial install, simply paste this command in a shell.
-```bash
-bash -c "$(curl -fsSL https://raw.github.com/eyesofBucket/configs/main/boot.sh)" "" -i
+## Setup
+### Linux
 ```
-### Update
-This one just updates the dotfiles if everything is already installed.
-```bash
-bash -c "$(curl -fsSL https://raw.github.com/eyesofBucket/configs/main/boot.sh)" ""
+git clone https://github.com/eyesofBucket/configs ~/.config/bvkt
+cp ~/.config/bvkt/profiles/.zshrc ~/
+cp ~/.config/bvkt/profiles/.vimrc ~/
+```
+
+### Windows 
+```
+git clone https://github.com/eyesofBucket/configs $Env:LOCALAPPDATA\bvkt
+cp $Env:LOCALAPPDATA\bvkt\profiles\profile.ps1 ~\Documents\Powershell
 ```
 
 ## Tools
@@ -25,6 +28,7 @@ Uses the fantastic [Oh My Zsh](https://github.com/ohmyzsh/ohmyzsh) and a handful
 - dirhistory
 - history
 - zsh-autosuggestions
+- zsh-syntax-highlighting
 - jsontools
 
 ### [Oh My Posh](https://github.com/JanDeDobbeleer/oh-my-posh)
