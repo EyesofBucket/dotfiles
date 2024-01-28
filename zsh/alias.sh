@@ -11,6 +11,14 @@ alias colormap='for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f
 
 alias pubip='curl ifconfig.io'
 
+bvktpath="$HOME/.config/bvkt"
+alias bvktconf="pushd $bvktpath"
+alias bvktedit="pushd $bvktpath; nvim .; popd"
+
+nvpath="$HOME/.config/nvim"
+alias nvconf="pushd $nvpath"
+alias nvedit="pushd $nvpath; nvim .; popd"
+
 # Debian
 if which apt >/dev/null 2>&1
 then
