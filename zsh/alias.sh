@@ -7,6 +7,9 @@ alias sudo='sudo '
 alias please='sudo '
 alias svim='sudoedit'
 
+alias hist='history | grep'
+alias al='alias | grep'
+
 alias colormap='for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+"\n"}; done'
 
 alias pubip='curl ifconfig.io'
