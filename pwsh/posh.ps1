@@ -1,4 +1,4 @@
-oh-my-posh init pwsh --config "$env:LOCALAPPDATA/bvkt/eyesofbucket.omp.json" | Invoke-Expression
+oh-my-posh init pwsh --config "$env:LOCALAPPDATA/bvkt/dotfiles/.config/bvkt/eyesofbucket.omp.json" | Invoke-Expression
 
 function Set-EnvVar {
     $x = (Get-Location -Stack).Path.count
