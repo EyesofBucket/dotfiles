@@ -181,3 +181,11 @@ then
     alias iwd='iwctl station wlan0 disconnect'
     alias iws='iwctl station wlan0 scan && iwctl station wlan0 get-networks'
 fi
+
+if which eza >/dev/null 2>&1
+then
+    alias ls='eza --icons --git'
+    alias ll='eza --icons --git --git-repos -lg'
+    alias la='eza --icons --git --git-repos -laag'
+    alias lt='eza --icons --git --git-repos -gT'
+fi
