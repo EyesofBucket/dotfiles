@@ -1,0 +1,1 @@
+function spwn() { $@ & disown }
