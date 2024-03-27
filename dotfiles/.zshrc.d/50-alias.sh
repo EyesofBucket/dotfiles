@@ -22,6 +22,8 @@ nvpath="$HOME/.config/nvim"
 alias nvconf="pushd $nvpath"
 alias nvedit="pushd $nvpath; nvim .; popd"
 
+function spwn() { $@ & disown }
+
 # Debian
 if which apt >/dev/null 2>&1
 then
@@ -188,4 +190,9 @@ then
     alias ll='eza --icons --git --git-repos -lg'
     alias la='eza --icons --git --git-repos -laag'
     alias lt='eza --icons --git --git-repos -gT'
+fi
+
+if which epy >/dev/null 2>&1
+then
+    alias epy='pushd $HOME/Books; epy "$(fzf)"; popd'
 fi
