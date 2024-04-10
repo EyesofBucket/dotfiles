@@ -8,9 +8,9 @@ Designed to be a quick and easy way to set up my ideal linux user environment, i
 ## Setup
 ### Linux
 ```
-git clone https://github.com/eyesofBucket/configs ~/.config/bvkt
-cp ~/.config/bvkt/profiles/.zshrc ~/
-cp ~/.config/bvkt/profiles/.vimrc ~/
+git clone https://github.com/eyesofBucket/configs ~/bvkt
+cd ~/bvkt
+./setup.sh
 ```
 
 ### Windows 
@@ -18,22 +18,3 @@ cp ~/.config/bvkt/profiles/.vimrc ~/
 git clone https://github.com/eyesofBucket/configs $Env:LOCALAPPDATA\bvkt
 cp $Env:LOCALAPPDATA\bvkt\profiles\profile.ps1 ~\Documents\Powershell
 ```
-
-## Tools
-
-### [Zsh](https://www.zsh.org/)
-Uses the fantastic [Oh My Zsh](https://github.com/ohmyzsh/ohmyzsh) and a handful of plugins including:
-- git
-- sudo
-- dirhistory
-- history
-- zsh-autosuggestions
-- zsh-syntax-highlighting
-- jsontools
-
-### [Oh My Posh](https://github.com/JanDeDobbeleer/oh-my-posh)
-I use a custom posh theme to provide a nice, cross-platform solution to theming.  It even works on Powershell!
-
-### [Tmux](https://github.com/tmux/tmux)
-
-### Vim

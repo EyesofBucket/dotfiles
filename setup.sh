@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+if [! -d $HOME/.config]; then
+    mkdir $HOME/.config
+fi
+
 stow dotfiles -t ~
 
 # oh-my-zsh
@@ -8,7 +12,7 @@ git clone https://github.com/zsh-users/zsh-autosuggestions.git "${ZSH_CUSTOM:-$H
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
 
 # oh-my-posh
-curl -s https://ohmyposh.dev/install.sh | bash -s
+curl -s https://ohmyposh.dev/install.sh | sudo bash -s
 
 # vim-plug
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
