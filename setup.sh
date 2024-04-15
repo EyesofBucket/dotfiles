@@ -15,31 +15,31 @@ ERR="${RED}${HEADER}"
 
 CONFIGDIR="${XDG_HOME_CONFIG:-$HOME/.config}"
 if [ ! -d "${CONFIGDIR}" ]; then
-    echo "${INFO}${CYAN}${CONFIGDIR} ${ORANGE}missing. Creating.${NC}"
+    echo -e "${INFO}${CYAN}${CONFIGDIR} ${ORANGE}missing. Creating.${NC}"
     mkdir "${CONFIGDIR}"
 fi
 
-echo "${INFO}${ORANGE}Running stow...${NC}"
+echo -e "${INFO}${ORANGE}Running stow...${NC}"
 stow dotfiles -t ~
 if [ $? -ne 0 ]; then
-    echo "${ERR}${ORANGE}Stow failed! Exiting.${NC}"
+    echo -e "${ERR}${ORANGE}Stow failed! Exiting.${NC}"
     exit 1
 fi
 
 # oh-my-zsh
-echo "${INFO}${ORANGE}Installing oh-my-zsh...${NC}"
+echo -e "${INFO}${ORANGE}Installing oh-my-zsh...${NC}"
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 git clone https://github.com/zsh-users/zsh-autosuggestions.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
 
 # oh-my-posh
-echo "${INFO}${ORANGE}Installing oh-my-posh...${NC}"
+echo -e "${INFO}${ORANGE}Installing oh-my-posh...${NC}"
 curl -s https://ohmyposh.dev/install.sh | sudo bash -s
 
 # vim-plug
-echo "${INFO}${ORANGE}Installing vim-plug...${NC}"
+echo -e "${INFO}${ORANGE}Installing vim-plug...${NC}"
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 # Install tmux plugin manager
-echo "${INFO}${ORANGE}Installing tpm...${NC}"
+echo -e "${INFO}${ORANGE}Installing tpm...${NC}"
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
