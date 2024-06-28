@@ -1,3 +1,5 @@
+bindkey -s ^f "tmux-sessionizer\n"
+
 alias ez='exec zsh'
 
 alias help='run-help'
