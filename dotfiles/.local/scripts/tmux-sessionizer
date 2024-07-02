@@ -3,7 +3,7 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    options="$(find $(echo $BVKT_PROJECT_DIRS | tr -s ';' ' ') -mindepth 1 -maxdepth 1 -type d | tr -s '\n' ';');$BVKT_PROJECTS"
+    options="$(find $(echo $BVKT_PROJECT_DIRS | tr -s ';' ' ') -mindepth 1 -maxdepth 1 -type d -not -path '*/.*' | tr -s '\n' ';');$BVKT_PROJECTS"
     selected=$(echo $options | tr -s ';' '\n' | fzf --preview "eza --icons --git --git-repos -gTl --color=always {}")
 fi
 
