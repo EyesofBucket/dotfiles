@@ -3,9 +3,8 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    options=$(find ~/projects -mindepth 1 -maxdepth 1 -type d | tr -s '\n' ';')
-    options="$options;$HOME/bvkt"
-    selected=$(echo $options | tr -s ';' '\n' | fzf)
+    options="$(find $(echo $BVKT_PROJECT_DIRS | tr -s ';' ' ') -mindepth 1 -maxdepth 1 -type d | tr -s '\n' ';');$BVKT_PROJECTS"
+    selected=$(echo $options | tr -s ';' '\n' | fzf --preview "eza --icons --git --git-repos -gTl --color=always {}")
 fi
 
 if [[ -z $selected ]]; then
@@ -13,16 +12,15 @@ if [[ -z $selected ]]; then
 fi
 
 selected_name=$(basename "$selected" | tr . _)
-tmux_running=$(pgrep tmux)
 
-if ! tmux has-session -t=$selected_name 2> /dev/null; then
-    tmux new-session -ds $selected_name -c $selected
-    tmux new-window -t ${selected_name}: 'nvim .; zsh'
+if ! tmux has-session -t="$selected_name" 2> /dev/null; then
+    tmux new-session -ds "$selected_name" -c "$selected"
+    tmux new-window -t "${selected_name}:" -c "$selected" 'nvim .; zsh'
 fi
 
 if [[ -z $TMUX ]]; then
-    tmux attach-session -t $selected_name
+    tmux attach-session -t "$selected_name"
 else
-    tmux switch-client -t $selected_name
+    tmux switch-client -t "$selected_name"
 fi
 

@@ -23,3 +23,7 @@ else
 fi
 
 fpath=(~/.zshrc.d/fpath $fpath)
+
+# Separate entries with ;
+export BVKT_PROJECT_DIRS="$HOME/projects"
+export BVKT_PROJECTS="$HOME/bvkt;$HOME/Obsidian/EyesofBucket"
