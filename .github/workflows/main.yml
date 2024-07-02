@@ -34,7 +34,7 @@ jobs:
 
       - name: Evaluate the environment
         run: |
-          zsh dotfiles/zshrc
+          zsh ~/.zshrc
           vim --not-a-term -c "PlugStatus" -c "%w /tmp/vim.log" -c "qa" >/dev/null
           echo Vim plugins:
           cat /tmp/vim.log
