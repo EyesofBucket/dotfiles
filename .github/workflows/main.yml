@@ -25,7 +25,7 @@ jobs:
 
       - name: Setup workspace
         run: |
-          sudo apt install zsh curl wget vim
+          sudo apt install zsh curl wget vim stow
           cd $GITHUB_WORKSPACE
           chmod a+x ./*.sh
 
