@@ -28,8 +28,6 @@ fpath=(~/.zshrc.d/fpath $fpath)
 export BVKT_PROJECT_DIRS="$HOME/projects;$HOME/Obsidian;$HOME/git"
 export BVKT_PROJECTS="$HOME/bvkt"
 
-export BAT_THEME="Catppuccin Mocha"
-
 export FZF_CTRL_T_OPTS="
   --walker-skip .git,node_modules,target
   --preview 'bat -n --color=always {}'
