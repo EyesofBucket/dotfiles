@@ -1,4 +1,5 @@
 bindkey -s ^f "tmux-sessionizer\n"
+bindkey -s ^g "tmux-session-fzf\n"
 
 alias ez='exec zsh'
 

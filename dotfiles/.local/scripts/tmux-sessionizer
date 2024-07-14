@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+[[ -n "$TMUX" ]] && change="switch-client" || change="attach-session"
+
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
@@ -15,12 +17,7 @@ selected_name=$(basename "$selected" | tr . _)
 
 if ! tmux has-session -t="$selected_name" 2> /dev/null; then
     tmux new-session -ds "$selected_name" -c "$selected"
-    tmux new-window -t "${selected_name}:" -c "$selected" 'nvim .; zsh'
+    tmux new-window -t "${selected_name}:" -c "$selected" -n 'neovim' 'nvim .; zsh'
 fi
 
-if [[ -z $TMUX ]]; then
-    tmux attach-session -t "$selected_name"
-else
-    tmux switch-client -t "$selected_name"
-fi
-
+tmux "$change" -t "$selected_name"
