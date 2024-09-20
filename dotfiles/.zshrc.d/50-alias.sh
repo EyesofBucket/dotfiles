@@ -200,3 +200,52 @@ if which epy >/dev/null 2>&1
 then
     alias epy='pushd $HOME/Books; epy "$(fzf)"; popd'
 fi
+
+if which kubectl >/dev/null 2>&1
+then
+    alias k='kubectl'
+    alias kl='kubectl logs'
+    alias ke='kubectl exec'
+    alias kei='kubectl exec -it'
+    alias ka='kubectl apply -f'
+
+    alias kg='kubectl get'
+    alias kgn='kubectl get nodes'
+    alias kgp='kubectl get pods'
+    alias kgd='kubectl get deployments'
+    alias kgc='kubectl get configmaps'
+    alias kgv='kubectl get services'
+    alias kgs='kubectl get secrets'
+    alias kgi='kubectl get ingresses'
+    alias kgpvc='kubectl get pvcs'
+
+    alias kd='kubectl describe'
+    alias kdn='kubectl describe nodes'
+    alias kdp='kubectl describe pods'
+    alias kdd='kubectl describe deployments'
+    alias kdc='kubectl describe configmaps'
+    alias kdv='kubectl describe services'
+    alias kds='kubectl describe secrets'
+    alias kdi='kubectl describe ingresses'
+    alias kdpvc='kubectl describe pvcs'
+
+    alias krm='kubectl delete'
+    alias krmn='kubectl delete nodes'
+    alias krmp='kubectl delete pods'
+    alias krmd='kubectl delete deployments'
+    alias krmc='kubectl delete configmaps'
+    alias krmv='kubectl delete services'
+    alias krms='kubectl delete secrets'
+    alias krmi='kubectl delete ingresses'
+    alias krmpvc='kubectl delete pvcs'
+
+    alias kcf='kubectl config use-context $(kubectl config get-contexts -o name | fzf)'
+fi
+
+if which helm >/dev/null 2>&1
+then
+    alias hs='helm start'
+    alias hi='helm install'
+    alias hu='helm upgrade'
+    alias hrm='helm uninstall'
+fi

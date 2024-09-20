@@ -1,5 +1,4 @@
-export ZSH=$HOME/.oh-my-zsh
-export plugins=(git sudo dirhistory history zsh-syntax-highlighting zsh-autosuggestions jsontools)
+export plugins=(git sudo dirhistory history jsontools kubectl kube-ps1 helm)
 
 source "$ZSH/oh-my-zsh.sh"
 

@@ -149,7 +149,7 @@
         {
           "type": "go",
           "style": "plain",
-          "template": " \ufcd1 ",
+          "template": " \ue65e ",
           "background": "#7FD5EA",
           "foreground": "#ffffff",
           "properties": {
@@ -165,6 +165,23 @@
           "properties": {
             "fetch_version": false
           }
+        },
+        {
+          "type": "helm",
+          "style": "plain",
+          "template": "  {{ .Version }}",
+          "background": "p:blue",
+          "foreground": "p:base",
+          "properties": {
+            "display_mode": "files"
+          }
+        },
+        {
+          "type": "kubectl",
+          "style": "plain",
+          "template": " 󰠳 {{ .Context }}{{ if .Namespace }} :: {{ .Namespace }}{{ end }} ",
+          "background": "p:blue",
+          "foreground": "p:base"
         },
         {
           "type": "rust",
