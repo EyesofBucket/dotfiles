@@ -6,7 +6,7 @@ import = [
 opacity = 0.9
 
 [font]
-size = 8.0
+size = 10.0
 
 [font.normal]
 family = "JetBrainsMono Nerd Font"
