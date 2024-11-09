@@ -1,6 +1,9 @@
 {
   "version": 2,
   "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "properties": {
+    "disable_notice": "true"
+  },
   "console_title_template": "{{if .Env.TITLE_HOST}}{{.Env.TITLE_HOST}}{{else}}{{.HostName}}{{end}} ({{.PWD}})",
   "palette": {
     "rosewater": "#f5e0dc",
@@ -36,9 +39,16 @@
       "alignment": "left",
       "segments": [
         {
+          "type": "text",
+          "style": "plain",
+          "background": "p:blue",
+          "foreground": "p:surface0",
+          "template": "{{if .Env.IN_NIX_SHELL}} \uf313  nix-shell {{end}}"
+        },
+        {
           "type": "os",
           "style": "plain",
-          "template": " {{.Icon}} ",
+          "template": "",
           "background": "p:surface0",
           "foreground": "p:text",
           "foreground_templates": [
@@ -69,13 +79,6 @@
           "template": " {{ if .WSL }}\uf68e {{ end }}",
           "background": "p:surface0",
           "foreground": "p:flamingo"
-        },
-        {
-          "type": "text",
-          "style": "plain",
-          "background": "p:surface0",
-          "foreground": "p:blue",
-          "template": "{{if .Env.IN_NIX_SHELL}} \uf313 {{end}}"
         },
         {
           "type": "root",
