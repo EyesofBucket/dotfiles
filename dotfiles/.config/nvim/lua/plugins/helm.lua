@@ -1,4 +1,4 @@
 return {
   "towolf/vim-helm",
-  ft = "yaml",
+  ft = "helm",
 }

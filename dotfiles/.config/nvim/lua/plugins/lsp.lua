@@ -75,6 +75,9 @@ return {
 
         local cmp = require('cmp')
         local cmp_lsp = require("cmp_nvim_lsp")
+        local luasnip = require("luasnip")
+        local cmp_select = { behavior = cmp.SelectBehavior.Select }
+
         local capabilities = vim.tbl_deep_extend(
             "force",
             {},
@@ -112,9 +115,6 @@ return {
                 end,
             }
         })
-        require("lspconfig").nil_ls.setup{}
-
-        local cmp_select = {behavior = cmp.SelectBehavior.Select}
 
         cmp.setup({
             sources = cmp.config.sources({
@@ -131,7 +131,7 @@ return {
             }),
             snippet = {
                 expand = function(args)
-                    require('luasnip').lsp_expand(args.body)
+                    luasnip.lsp_expand(args.body)
                 end,
             },
         })

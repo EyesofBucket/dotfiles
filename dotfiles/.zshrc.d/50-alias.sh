@@ -6,7 +6,7 @@ alias ez='exec zsh'
 
 alias help='run-help'
 
-alias watch='watch '
+alias watch='watch -c '
 alias sudo='sudo '
 alias please='sudo '
 alias svim='sudoedit'
@@ -18,15 +18,7 @@ alias colormap='for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f
 
 alias pubip='curl ifconfig.io'
 
-bvktpath="$HOME/.config/bvkt"
-alias bvktconf="pushd $bvktpath"
-alias bvktedit="pushd $bvktpath; nvim .; popd"
-
-nvpath="$HOME/.config/nvim"
-alias nvconf="pushd $nvpath"
-alias nvedit="pushd $nvpath; nvim .; popd"
-
-function spwn() { $@ & disown }
+function spwn() { "$@" & disown; }
 
 # Debian
 if which apt >/dev/null 2>&1
@@ -204,48 +196,74 @@ fi
 if which kubectl >/dev/null 2>&1
 then
     alias k='kubectl'
-    alias kl='kubectl logs'
-    alias ke='kubectl exec'
-    alias kei='kubectl exec -it'
-    alias ka='kubectl apply -f'
+    alias kl='k logs'
+    alias kx='k exec'
+    alias kxi='k exec -it'
+    alias ka='k apply -f'
 
-    alias kg='kubectl get'
-    alias kgn='kubectl get nodes'
-    alias kgp='kubectl get pods'
-    alias kgd='kubectl get deployments'
-    alias kgc='kubectl get configmaps'
-    alias kgv='kubectl get services'
-    alias kgs='kubectl get secrets'
-    alias kgi='kubectl get ingresses'
-    alias kgpvc='kubectl get pvcs'
+    alias kg='k get'
+    alias kgn='kg nodes'
+    alias kgp='kg pods'
+    alias kgd='kg deployments'
+    alias kgc='kg configmaps'
+    alias kgsv='kg services'
+    alias kgsc='kg secrets'
+    alias kgi='kg ingresses'
+    alias kgpv='kg pv'
+    alias kgpvc='kg pvc'
 
-    alias kd='kubectl describe'
-    alias kdn='kubectl describe nodes'
-    alias kdp='kubectl describe pods'
-    alias kdd='kubectl describe deployments'
-    alias kdc='kubectl describe configmaps'
-    alias kdv='kubectl describe services'
-    alias kds='kubectl describe secrets'
-    alias kdi='kubectl describe ingresses'
-    alias kdpvc='kubectl describe pvcs'
+    alias ke='k edit'
+    alias ken='ke nodes'
+    alias kep='ke pods'
+    alias ked='ke deployments'
+    alias kec='ke configmaps'
+    alias kesv='ke services'
+    alias kesc='ke secrets'
+    alias kei='ke ingresses'
+    alias kepv='ke pv'
+    alias kepvc='ke pvc'
 
-    alias krm='kubectl delete'
-    alias krmn='kubectl delete nodes'
-    alias krmp='kubectl delete pods'
-    alias krmd='kubectl delete deployments'
-    alias krmc='kubectl delete configmaps'
-    alias krmv='kubectl delete services'
-    alias krms='kubectl delete secrets'
-    alias krmi='kubectl delete ingresses'
-    alias krmpvc='kubectl delete pvcs'
+    alias kd='k describe'
+    alias kdn='kd nodes'
+    alias kdp='kd pods'
+    alias kdd='kd deployments'
+    alias kdc='kd configmaps'
+    alias kdv='kd services'
+    alias kds='kd secrets'
+    alias kdi='kd ingresses'
+    alias kdpv='kd pv'
+    alias kdpvc='kd pvc'
 
-    alias kcf='kubectl config use-context $(kubectl config get-contexts -o name | fzf)'
+    alias krm='k delete'
+    alias krmn='krm nodes'
+    alias krmp='krm pods'
+    alias krmpf='krm pods --force'
+    alias krmd='krm deployments'
+    alias krmc='krm configmaps'
+    alias krmv='krm services'
+    alias krms='krm secrets'
+    alias krmi='krm ingresses'
+    alias krmpv='krm pv'
+    alias krmpvc='krm pvc'
+
+    alias kc='k config'
+    alias kcc='kc use-context $(kc get-contexts -o name | fzf)'
+    alias kcn='kc set-context --current --namespace=$(kg namespaces -o json | jq ".items[].metadata.name" -r | fzf)'
 fi
 
 if which helm >/dev/null 2>&1
 then
-    alias hs='helm start'
-    alias hi='helm install'
-    alias hu='helm upgrade'
-    alias hrm='helm uninstall'
+    alias hi='helm upgrade --install'
+    alias hid='helm upgrade --install --dry-run'
+    alias hu='helm uninstall'
+    alias hpk='helm package'
+    alias hpu='helm push'
+    alias hdu='helm dependency update'
+    alias hga='helm get all'
+fi
+
+if which kubecolor >/dev/null 2>&1
+then
+    alias kubectl='kubecolor'
+    compdef kubecolor=kubectl
 fi
