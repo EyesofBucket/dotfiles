@@ -1,8 +1,9 @@
 setopt autocd
 setopt pushd_silent
 
-HISTSIZE=10000
-SAVEHIST=$HISTSIZE
+export HISTSIZE=10000
+export HISTFILE=${HOME}/.zsh_history
+export SAVEHIST=$HISTSIZE
 setopt appendhistory
 setopt sharehistory
 setopt histignorespace
