@@ -78,13 +78,16 @@ fi
 autoload -U +X bashcompinit && bashcompinit
 
 if which fzf >/dev/null 2>&1
+then
   eval "$(fzf --zsh)"
 fi
 
 if which glab >/dev/null 2>&1
+then
   eval "$(glab completion -s zsh)"
 fi
 
 if which flux >/dev/null 2>&1
+then
   eval "$(flux completion zsh)"
 fi
