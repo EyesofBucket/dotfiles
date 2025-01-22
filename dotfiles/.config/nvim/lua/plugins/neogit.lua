@@ -13,4 +13,7 @@ return {
             desc = "Neogit: Status",
         },
     },
+    opts = {
+        kind = "floating",
+    },
 }

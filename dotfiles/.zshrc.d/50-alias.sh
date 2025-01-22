@@ -215,6 +215,7 @@ fi
 
 if which kubectl >/dev/null 2>&1
 then
+    source <(kubectl completion zsh)
     alias k='kubectl'
     alias kl='k logs'
     alias kx='k exec'
@@ -273,6 +274,7 @@ fi
 
 if which helm >/dev/null 2>&1
 then
+    source <(helm completion zsh)
     alias hi='helm upgrade --install'
     alias hid='helm upgrade --install --dry-run'
     alias hu='helm uninstall'
