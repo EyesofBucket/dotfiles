@@ -77,4 +77,14 @@ fi
 # automatically load bash completion functions
 autoload -U +X bashcompinit && bashcompinit
 
-eval "$(fzf --zsh)"
+if which fzf >/dev/null 2>&1
+  eval "$(fzf --zsh)"
+fi
+
+if which glab >/dev/null 2>&1
+  eval "$(glab completion -s zsh)"
+fi
+
+if which flux >/dev/null 2>&1
+  eval "$(flux completion zsh)"
+fi
