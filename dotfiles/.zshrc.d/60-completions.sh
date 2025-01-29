@@ -31,11 +31,7 @@ zstyle ':completion:*' special-dirs true
 zstyle ':completion:*' list-colors '${(s.:.)LS_COLORS}'
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
 
-if [[ "$OSTYPE" = solaris* ]]; then
-  zstyle ':completion:*:*:*:*:processes' command "ps -u $USERNAME -o pid,user,comm"
-else
-  zstyle ':completion:*:*:*:*:processes' command "ps -u $USERNAME -o pid,user,comm -w -w"
-fi
+zstyle ':completion:*:*:*:*:processes' command "ps -u $USERNAME -o pid,user,comm -w -w"
 
 # disable named-directories autocompletion
 zstyle ':completion:*:cd:*' tag-order local-directories directory-stack path-directories
@@ -77,17 +73,17 @@ fi
 # automatically load bash completion functions
 autoload -U +X bashcompinit && bashcompinit
 
-if which fzf >/dev/null 2>&1
+if command -v fzf >/dev/null 2>&1
 then
   eval "$(fzf --zsh)"
 fi
 
-if which glab >/dev/null 2>&1
+if command -v glab >/dev/null 2>&1
 then
   eval "$(glab completion -s zsh)"
 fi
 
-if which flux >/dev/null 2>&1
+if command -v flux >/dev/null 2>&1
 then
   eval "$(flux completion zsh)"
 fi
