@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+
+POSITIONAL_ARGS=()
+
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        -c|--clone-repo)
+            REPO="$2"
+            shift
+            shift
+            ;;
+        -i|--init-repo)
+            INIT=YES
+            shift
+            ;;
+        -*)
+            echo "Unknown option $1"
+            exit 1
+            ;;
+        *)
+            POSITIONAL_ARGS+=("$1")
+            ;;
+    esac
+done
+
+set -- "${POSITIONAL_ARGS[@]}"
+
+PROJECT_ROOT="${HOME}/projects"
+PROJECT_DIR="${1:-$(basename "$REPO")}"
+PROJECT_PATH="${PROJECT_ROOT}/${PROJECT_DIR}"
+
+if [[ -z "${PROJECT_DIR}" ]]; then
+    echo "No project name given"
+    exit 1
+fi
+
+if [ -d "${PROJECT_PATH}" ]; then
+    echo "Project already exists"
+    exit 2
+fi
+
+mkdir "${PROJECT_PATH}"
+
+if [[ -n "${INIT}" ]]; then
+    pushd "${PROJECT_PATH}" || exit 3
+    git init
+    popd || exit 3
+fi
+
+if [[ -n "${REPO}" ]]; then
+    git clone "${REPO}" "${PROJECT_PATH}" || exit 3
+fi
+
+tmux-sessionizer "${PROJECT_PATH}/"
