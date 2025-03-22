@@ -1,10 +1,15 @@
 return {
-  "lukas-reineke/indent-blankline.nvim",
-  main = "ibl",
-  opts = {
-    scope = {
-      enabled = false,
+    "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
+    opts = {
+        scope = {
+            enabled = false,
+        },
     },
-  },
-  event = { 'BufRead' },
+    event = { 'BufRead' },
+    keys = {
+        "<leader>i",
+        "<CMD>IBLToggle<CR>",
+        desc = "Indent: Toggle",
+    }
 }
