@@ -215,7 +215,6 @@ fi
 
 if command -v kubectl >/dev/null 2>&1
 then
-    source <(kubectl completion zsh)
     alias k='kubectl'
     alias kl='k logs'
     alias kx='k exec'
@@ -249,8 +248,8 @@ then
     alias kdp='kd pods'
     alias kdd='kd deployments'
     alias kdc='kd configmaps'
-    alias kdv='kd services'
-    alias kds='kd secrets'
+    alias kdsv='kd services'
+    alias kdsc='kd secrets'
     alias kdi='kd ingresses'
     alias kdpv='kd pv'
     alias kdpvc='kd pvc'
@@ -261,8 +260,8 @@ then
     alias krmpf='krm pods --force'
     alias krmd='krm deployments'
     alias krmc='krm configmaps'
-    alias krmv='krm services'
-    alias krms='krm secrets'
+    alias krmsv='krm services'
+    alias krmsc='krm secrets'
     alias krmi='krm ingresses'
     alias krmpv='krm pv'
     alias krmpvc='krm pvc'
@@ -274,7 +273,6 @@ fi
 
 if command -v helm >/dev/null 2>&1
 then
-    source <(helm completion zsh)
     alias hi='helm upgrade --install'
     alias hid='helm upgrade --install --dry-run'
     alias hu='helm uninstall'
@@ -287,5 +285,4 @@ fi
 if command -v kubecolor >/dev/null 2>&1
 then
     alias kubectl='kubecolor'
-    compdef kubecolor=kubectl
 fi
