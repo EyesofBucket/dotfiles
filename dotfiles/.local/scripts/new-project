@@ -13,12 +13,17 @@ while [[ $# -gt 0 ]]; do
             INIT=YES
             shift
             ;;
+        -h|--help)
+            echo "Usage: $0 [-c | --clone-repo] <uri> | [-i | --init-repo] name"
+            shift
+            ;;
         -*)
             echo "Unknown option $1"
             exit 1
             ;;
         *)
             POSITIONAL_ARGS+=("$1")
+            shift
             ;;
     esac
 done
