@@ -27,8 +27,8 @@ vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
 vim.keymap.set("v", "gt", ":s/\\v<%((.)%(\\w{3,})@=|(i>))(\\w*)/\\u\\1\\L\\2\\3/g<CR>", { desc = "Title caps" })
 
-vim.keymap.set("n", "<leader>bn", "<CMD>next<CR>", { desc = "Next buffer" })
-vim.keymap.set("n", "<leader>bp", "<CMD>previous<CR>", { desc = "Previous buffer" })
+vim.keymap.set("n", "<C-Right>", "<CMD>next<CR>", { desc = "Next buffer" })
+vim.keymap.set("n", "<C-Left>", "<CMD>previous<CR>", { desc = "Previous buffer" })
 
 -- From Stephen Pate (https://github.com/StephenP-AL/dotfiles/blob/master/.vimrc
 vim.keymap.set("v", "<leader>{", "<esc>`>a}<esc>`<i{<esc>")
