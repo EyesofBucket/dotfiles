@@ -1,7 +1,3 @@
-bindkey -s ^f "tmux-sessionizer\n"
-bindkey -s ^g "tmux-session-fzf\n"
-bindkey -s ^s "tmux-sshionizer\n"
-
 alias history='history 1'
 
 alias md='mkdir -p'

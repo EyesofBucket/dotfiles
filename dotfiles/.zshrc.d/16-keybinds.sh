@@ -143,3 +143,7 @@ bindkey "^[m" copy-prev-shell-word
 ## Fix weird sequence that rxvt produces
 #bindkey -s '^[[Z' '\t'
 #
+
+bindkey -s ^f "tmux-sessionizer\n"
+bindkey -s ^g "tmux-session-chooser\n"
+bindkey -s ^s "tmux-sshionizer\n"
