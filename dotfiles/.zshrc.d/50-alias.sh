@@ -282,3 +282,8 @@ if command -v kubecolor >/dev/null 2>&1
 then
     alias kubectl='kubecolor'
 fi
+
+if command -v spotify_player >/dev/null 2>&1
+then
+    alias spt='spotify_player'
+fi
