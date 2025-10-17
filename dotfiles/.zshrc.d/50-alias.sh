@@ -1,6 +1,22 @@
-bindkey -s ^f "tmux-sessionizer\n"
-bindkey -s ^g "tmux-session-fzf\n"
-bindkey -s ^s "tmux-sshionizer\n"
+alias history='history 1'
+
+alias md='mkdir -p'
+alias rd='rmdir'
+alias ~='cd'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias /='cd /'
+alias 1='cd -1'
+alias 2='cd -2'
+alias 3='cd -3'
+alias 4='cd -4'
+alias 5='cd -5'
+alias 6='cd -6'
+alias 7='cd -7'
+alias 8='cd -8'
+alias 9='cd -9'
 
 alias ez='exec zsh'
 
@@ -21,23 +37,23 @@ alias pubip='curl ifconfig.io'
 function spwn() { "$@" & disown; }
 
 # Debian
-if which apt >/dev/null 2>&1
+if command -v apt >/dev/null 2>&1
 then
     alias update='sudo apt update && sudo apt upgrade -y'
 
 # Fedora
-elif which yum >/dev/null 2>&1
+elif command -v yum >/dev/null 2>&1
 then
     alias update='sudo yum update -y'
 
 # Arch
-elif which pacman >/dev/null 2>&1
+elif command -v pacman >/dev/null 2>&1
 then
     alias update='sudo pacman -Syu'
 fi
 
 # podman
-if which podman >/dev/null 2>&1
+if command -v podman >/dev/null 2>&1
 then
     alias pm='podman'
     alias pml='podman logs'
@@ -86,7 +102,7 @@ then
 fi
 
 # podman-compose
-if which podman-compose >/dev/null 2>&1
+if command -v podman-compose >/dev/null 2>&1
 then
     alias pc='podman-compose'
     alias pcu='podman-compose up -d'
@@ -103,7 +119,7 @@ then
 fi
 
 # docker
-if which docker >/dev/null 2>&1
+if command -v docker >/dev/null 2>&1
 then
     alias dk='docker'
     alias dl='docker logs'
@@ -141,7 +157,7 @@ then
 fi
 
 # docker-compose
-if which docker-compose >/dev/null 2>&1
+if command -v docker-compose >/dev/null 2>&1
 then
     alias dc='docker-compose'
     alias dcu='docker-compose up -d'
@@ -151,7 +167,7 @@ then
 fi
 
 # firewall-cmd
-if which firewall-cmd >/dev/null 2>&1
+if command -v firewall-cmd >/dev/null 2>&1
 then
     alias fw='sudo firewall-cmd'
     alias fws='sudo firewall-cmd --state'
@@ -172,7 +188,7 @@ then
 fi
 
 # iwctl
-if which iwctl >/dev/null 2>&1
+if command -v iwctl >/dev/null 2>&1
 then
     alias iwc='iwctl station wlan0 connect'
     alias iwch='iwctl station wlan0 connect-hidden'
@@ -180,7 +196,7 @@ then
     alias iws='iwctl station wlan0 scan && iwctl station wlan0 get-networks'
 fi
 
-if which eza >/dev/null 2>&1
+if command -v eza >/dev/null 2>&1
 then
     alias ls='eza --icons --git'
     alias ll='eza --icons --git --git-repos -lg'
@@ -188,12 +204,12 @@ then
     alias lt='eza --icons --git --git-repos -gT'
 fi
 
-if which epy >/dev/null 2>&1
+if command -v epy >/dev/null 2>&1
 then
     alias epy='pushd $HOME/Books; epy "$(fzf)"; popd'
 fi
 
-if which kubectl >/dev/null 2>&1
+if command -v kubectl >/dev/null 2>&1
 then
     alias k='kubectl'
     alias kl='k logs'
@@ -228,8 +244,8 @@ then
     alias kdp='kd pods'
     alias kdd='kd deployments'
     alias kdc='kd configmaps'
-    alias kdv='kd services'
-    alias kds='kd secrets'
+    alias kdsv='kd services'
+    alias kdsc='kd secrets'
     alias kdi='kd ingresses'
     alias kdpv='kd pv'
     alias kdpvc='kd pvc'
@@ -240,8 +256,8 @@ then
     alias krmpf='krm pods --force'
     alias krmd='krm deployments'
     alias krmc='krm configmaps'
-    alias krmv='krm services'
-    alias krms='krm secrets'
+    alias krmsv='krm services'
+    alias krmsc='krm secrets'
     alias krmi='krm ingresses'
     alias krmpv='krm pv'
     alias krmpvc='krm pvc'
@@ -251,7 +267,7 @@ then
     alias kcn='kc set-context --current --namespace=$(kg namespaces -o json | jq ".items[].metadata.name" -r | fzf)'
 fi
 
-if which helm >/dev/null 2>&1
+if command -v helm >/dev/null 2>&1
 then
     alias hi='helm upgrade --install'
     alias hid='helm upgrade --install --dry-run'
@@ -262,8 +278,12 @@ then
     alias hga='helm get all'
 fi
 
-if which kubecolor >/dev/null 2>&1
+if command -v kubecolor >/dev/null 2>&1
 then
     alias kubectl='kubecolor'
-    compdef kubecolor=kubectl
+fi
+
+if command -v spotify_player >/dev/null 2>&1
+then
+    alias spt='spotify_player'
 fi

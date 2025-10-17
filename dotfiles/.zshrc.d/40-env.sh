@@ -26,7 +26,7 @@ fpath=(~/.zshrc.d/fpath $fpath)
 
 # Separate entries with ;
 export BVKT_PROJECT_DIRS="$HOME/projects;$HOME/Obsidian;$HOME/git"
-export BVKT_PROJECTS="$HOME/bvkt"
+export BVKT_PROJECTS="$HOME/bvkt;/etc/nixos"
 
 export FZF_CTRL_T_OPTS="
   --walker-skip .git,node_modules,target

@@ -5,8 +5,8 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    options=$(grep -i 'host.*' "${HOME}/.ssh/config" | grep -iv '# *hidden' | awk '{print $2}')
-    selected=$(echo "$options" | fzf)
+    options=$(grep -i '^host.*' "${HOME}/.ssh/config" | grep -iv '# *hidden' | awk '{print $2}')
+    selected=$(echo "$options" | fzf --print-query | tail -1)
 fi
 
 if [[ -z $selected ]]; then

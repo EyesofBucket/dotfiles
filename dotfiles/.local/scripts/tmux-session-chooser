@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+tmux choose-session
+
+[[ -n "$TMUX" ]] || tmux a
