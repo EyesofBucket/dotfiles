@@ -1,0 +1,1 @@
+/home/bucket/Neovim-theme-switcher/theme.lua
