@@ -88,7 +88,7 @@ show_always = true
 style_user = "sky"
 style_root = "red"
 format = '[ ](fg:$style bg:surface0)[ $user ](text bg:surface0)'
-aliases = { "root" = "" }
+aliases = { "root" = "", "bucket" = "" }
 
 [directory]
 style = "yellow"
