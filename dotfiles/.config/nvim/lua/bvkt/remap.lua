@@ -11,8 +11,7 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "n", "nzzzv")
 
-vim.keymap.set("x", "<leader>p", "\"_dp", { desc = "put (no buffer overwrite)" })
-vim.keymap.set("x", "<leader>P", "\"_dP", { desc = "PUT (no buffer overwrite)" })
+vim.keymap.set("x", "<leader>p", "\"_dP", { desc = "put (no buffer overwrite)" })
 
 vim.keymap.set("n", "<leader>y", "\"+y")
 vim.keymap.set("v", "<leader>y", "\"+y")
