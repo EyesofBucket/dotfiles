@@ -13,8 +13,12 @@ while [[ $# -gt 0 ]]; do
             INIT=YES
             shift
             ;;
+        -f|--fzf-repo)
+            FZF=YES
+            shift
+            ;;
         -h|--help)
-            echo "Usage: $0 [-c | --clone-repo] <uri> | [-i | --init-repo] name"
+            echo "Usage: new-project [-f | --fzf-repo] | [-c | --clone-repo] <uri> | [-i | --init-repo] name"
             shift
             ;;
         -*)
@@ -29,6 +33,13 @@ while [[ $# -gt 0 ]]; do
 done
 
 set -- "${POSITIONAL_ARGS[@]}"
+
+if [[ -n "${FZF}" ]]; then
+    function repolist {
+        glab repo list -aP 100 -F json | jq -r '.[] | .ssh_url_to_repo'
+    }
+    REPO="$(repolist | fzf)"
+fi
 
 PROJECT_ROOT="${HOME}/projects"
 PROJECT_DIR="${1:-$(basename "$REPO")}"
