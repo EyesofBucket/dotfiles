@@ -213,6 +213,7 @@ if command -v kubectl >/dev/null 2>&1
 then
     alias k='kubectl'
     alias kl='k logs'
+    alias klf='k logs -f'
     alias kx='k exec'
     alias kxi='k exec -it'
     alias ka='k apply -f'
@@ -263,8 +264,15 @@ then
     alias krmpvc='krm pvc'
 
     alias kc='k config'
-    alias kcc='kc use-context $(kc get-contexts -o name | fzf)'
-    alias kcn='kc set-context --current --namespace=$(kg namespaces -o json | jq ".items[].metadata.name" -r | fzf)'
+    function kcc() {
+        KUBE_CONTEXT_SELECTION=$(kubectl config get-contexts -o name | fzf)
+        [ -z "$KUBE_CONTEXT_SELECTION" ] || kubectl config use-context "$KUBE_CONTEXT_SELECTION"
+    }
+    function kcn() {
+        kubectl version >/dev/null || return 1
+        KUBE_NAMESPACE_SELECTION=$(kg namespaces -o json | jq ".items[].metadata.name" -r | fzf)
+        [ -z "$KUBE_NAMESPACE_SELECTION" ] || kubectl config set-context --current --namespace="$KUBE_NAMESPACE_SELECTION"
+    }
 fi
 
 if command -v helm >/dev/null 2>&1
@@ -287,3 +295,5 @@ if command -v spotify_player >/dev/null 2>&1
 then
     alias spt='spotify_player'
 fi
+
+alias dnsedit='nvim /etc/dnsmasq.conf && sudo systemctl restart dnsmasq'
