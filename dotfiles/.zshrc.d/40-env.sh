@@ -10,9 +10,9 @@ addToPathFront() {
     fi
 }
 
-addToPathFront $HOME/.local/scripts
+addToPathFront "$HOME/.local/scripts"
 
-if which nvim >/dev/null 2>&1
+if command -v nvim >/dev/null 2>&1
 then
     export EDITOR="$(which nvim)"
     export MANPAGER="$(which nvim) +Man!"
@@ -34,3 +34,5 @@ export FZF_CTRL_T_OPTS="
   --bind 'ctrl-/:change-preview-window(down|hidden|)'"
 
 export LOCALE_ARCHIVE=/usr/lib/locale/locale-archive
+
+export NEWT_MONO=1
