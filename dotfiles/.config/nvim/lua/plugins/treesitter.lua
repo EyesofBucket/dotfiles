@@ -2,6 +2,7 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     event = { 'BufRead' },
+    branch = 'main',
     build = ":TSUpdate",
     opts = {
         ensure_installed = {
@@ -11,6 +12,7 @@ return {
             "git_rebase",
             "gitcommit",
             "gitignore",
+            "go",
             "gotmpl",
             "helm",
             "html",
@@ -27,7 +29,7 @@ return {
             "toml",
             "vim",
             "vimdoc",
-            "yaml"
+            "yaml",
         },
         sync_install = false,
         additional_vim_regex_highlighting = false,
