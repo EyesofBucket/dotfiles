@@ -177,7 +177,7 @@ format = '[ 󰃰 ](bg:surface0 fg:$style)[$time ](bg:surface0 fg:text)'
 min_time = 500
 min_time_to_notify = 45000
 show_milliseconds = true
-show_notifications = true
+show_notifications = false
 style = "green"
 format = '[$duration ](bg:surface0 fg:$style italic)'
 
