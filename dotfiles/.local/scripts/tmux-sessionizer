@@ -35,7 +35,7 @@ else
     if [[ -n $UNSTAGED ]]; then
         options_unfiltered=$options
         options=$(for i in $options_unfiltered; do
-            [[ $(git -C "$i" status --porcelain 2>/dev/null | wc -l) -gt 0 ]] && echo "$i"
+            [[ $(git -C "$i" status --porcelain) ]] && echo "$i"
         done)
         selected=$(echo "$options" | fzf --tmux center,80%,border-native --preview "git -C {} remote get-url origin; eza --icons --git -gTlaI .git --color=always {}")
     else
