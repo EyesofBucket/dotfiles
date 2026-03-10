@@ -30,8 +30,10 @@ vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
 
-vim.opt.colorcolumn = "80"
+vim.opt.colorcolumn = "81"
 
 vim.opt.mouse = ""
 
 vim.opt.showmode = false
+
+vim.o.winborder = "rounded"
