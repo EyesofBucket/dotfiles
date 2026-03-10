@@ -7,6 +7,7 @@ return {
     opts = {
         ensure_installed = {
             "c",
+            "bash",
             "dockerfile",
             "git_config",
             "git_rebase",
