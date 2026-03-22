@@ -30,7 +30,8 @@ if [[ $# -eq 1 ]]; then
 else
     projectdirs=$(find ${BVKT_PROJECT_DIRS//;/ } -mindepth 1 -maxdepth 1 -type d -not -path '*/.*' 2>/dev/null)
     projects=$(find ${BVKT_PROJECTS//;/ } -maxdepth 0 -type d 2>/dev/null)
-    options=$(echo -e "$projectdirs\n$projects")
+    options=$(echo -en "$projectdirs\n$projects")
+    echo -n $options
 
     if [[ -n $UNSTAGED ]]; then
         options_unfiltered=$options
