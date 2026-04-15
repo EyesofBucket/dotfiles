@@ -12,7 +12,7 @@ addToPathFront() {
 
 addToPathFront "$HOME/.local/scripts"
 
-if command -v nvim >/dev/null 2>&1
+if command -v nvim >/dev/null
 then
     export EDITOR="$(which nvim)"
     export MANPAGER="$(which nvim) +Man!"

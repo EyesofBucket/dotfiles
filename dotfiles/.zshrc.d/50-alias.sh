@@ -37,23 +37,23 @@ alias pubip='curl ifconfig.io'
 function spwn() { "$@" & disown; }
 
 # Debian
-if command -v apt >/dev/null 2>&1
+if command -v apt >/dev/null
 then
     alias update='sudo apt update && sudo apt upgrade -y'
 
 # Fedora
-elif command -v yum >/dev/null 2>&1
+elif command -v yum >/dev/null
 then
     alias update='sudo yum update -y'
 
 # Arch
-elif command -v pacman >/dev/null 2>&1
+elif command -v pacman >/dev/null
 then
     alias update='sudo pacman -Syu'
 fi
 
 # podman
-if command -v podman >/dev/null 2>&1
+if command -v podman >/dev/null
 then
     alias pm='podman'
     alias pml='podman logs'
@@ -102,7 +102,7 @@ then
 fi
 
 # podman-compose
-if command -v podman-compose >/dev/null 2>&1
+if command -v podman-compose >/dev/null
 then
     alias pc='podman-compose'
     alias pcu='podman-compose up -d'
@@ -119,7 +119,7 @@ then
 fi
 
 # docker
-if command -v docker >/dev/null 2>&1
+if command -v docker >/dev/null
 then
     alias dk='docker'
     alias dl='docker logs'
@@ -173,7 +173,7 @@ then
 fi
 
 # docker-compose
-if command -v docker-compose >/dev/null 2>&1
+if command -v docker-compose >/dev/null
 then
     alias dc='docker-compose'
     alias dcu='docker-compose up -d'
@@ -183,7 +183,7 @@ then
 fi
 
 # firewall-cmd
-if command -v firewall-cmd >/dev/null 2>&1
+if command -v firewall-cmd >/dev/null
 then
     alias fw='sudo firewall-cmd'
     alias fws='sudo firewall-cmd --state'
@@ -204,7 +204,7 @@ then
 fi
 
 # iwctl
-if command -v iwctl >/dev/null 2>&1
+if command -v iwctl >/dev/null
 then
     alias iwc='iwctl station wlan0 connect'
     alias iwch='iwctl station wlan0 connect-hidden'
@@ -212,7 +212,7 @@ then
     alias iws='iwctl station wlan0 scan && iwctl station wlan0 get-networks'
 fi
 
-if command -v eza >/dev/null 2>&1
+if command -v eza >/dev/null
 then
     alias ls='eza --icons --git'
     alias ll='eza --icons --git --git-repos -lg'
@@ -220,12 +220,12 @@ then
     alias lt='eza --icons --git --git-repos -gT'
 fi
 
-if command -v epy >/dev/null 2>&1
+if command -v epy >/dev/null
 then
     alias epy='pushd $HOME/Books; epy "$(fzf)"; popd'
 fi
 
-if command -v kubectl >/dev/null 2>&1
+if command -v kubectl >/dev/null
 then
     alias k='kubectl'
     alias kl='kubectl logs'
@@ -291,7 +291,7 @@ then
     }
 fi
 
-if command -v helm >/dev/null 2>&1
+if command -v helm >/dev/null
 then
     alias hi='helm upgrade --install'
     alias hid='helm upgrade --install --dry-run'
@@ -302,12 +302,12 @@ then
     alias hga='helm get all'
 fi
 
-if command -v kubecolor >/dev/null 2>&1
+if command -v kubecolor >/dev/null
 then
     alias kubectl='kubecolor'
 fi
 
-if command -v spotify_player >/dev/null 2>&1
+if command -v spotify_player >/dev/null
 then
     alias spt='spotify_player'
 fi
