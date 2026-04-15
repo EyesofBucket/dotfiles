@@ -5,6 +5,7 @@
         name = "my-packages";
         paths = [
           bat
+          cmake
           eza
           fzf
           jq
@@ -14,7 +15,6 @@
           stow
           tmux
           yq
-          zsh
         ];
       };
     };

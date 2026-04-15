@@ -3,7 +3,7 @@
 set -e # Exit on any non-zero exit code
 
 RED='\033[0;31m'
-GREEN='\033[0;32m'
+#GREEN='\033[0;32m'
 ORANGE='\033[0;33m'
 BLUE='\033[0;34m'
 PURPLE='\033[0;35m'
@@ -31,7 +31,7 @@ while [[ $# -gt 0 ]]; do
       use_nix=''
       shift
       ;;
-    -*|--*)
+    -*)
       echo "Unknown option $1"
       exit 1
       ;;
@@ -43,6 +43,11 @@ while [[ $# -gt 0 ]]; do
 done
 
 set -- "${POSITIONAL_ARGS[@]}"
+
+if [[ ! "$(command -v zsh)" ]]; then
+  echo -e "${ERR}zsh not found! Install zsh via the system's package manager."
+  exit 2
+fi
 
 configdir="${XDG_HOME_CONFIG:-$HOME/.config}"
 if [[ ! -d "${configdir}" ]]; then
@@ -58,8 +63,8 @@ if [[ $install_nix ]]; then
 fi
 
 echo -e "${INFO}Running stow..."
-if [[ $install_nix && $use_nix ]]; then
-    nix-shell -p nixpkgs.stow --run "dotfiles -t ~"
+if [[ $use_nix ]]; then
+    nix-shell -p stow --run "stow dotfiles -t ~"
 else
     stow dotfiles -t ~
 fi
@@ -69,5 +74,8 @@ nix-env -iA nixpkgs.my-packages
 
 echo -e "${INFO}Installing tpm..."
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+echo -e "${INFO}Changing default shell to $(which zsh)..."
+chsh -c "$(which zsh)"
 
 echo -e "${DONE}Done! Run ${CYAN}'exec zsh'${NC} to reload."
