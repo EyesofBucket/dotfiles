@@ -22,6 +22,12 @@ return {
         "neanias/everforest-nvim",
         priority = 1000,
         lazy = true,
+        config = function()
+            require('everforest').setup {
+                transparent_background_level = 1,
+            }
+            require('everforest').load()
+        end
     },
     {
         "kepano/flexoki-neovim",
@@ -68,9 +74,15 @@ return {
         end,
     },
     {
-        "shaunsingh/nord.nvim",
+        'AlexvZyl/nordic.nvim',
         priority = 1000,
         lazy = true,
+        config = function()
+            require('nordic').setup({
+                transparent = { bg = true, float = false },
+            })
+            require('nordic').load()
+        end
     },
     {
         "rose-pine/neovim",
@@ -100,6 +112,21 @@ return {
         lazy = true
     },
     {
-        "EskelinenAntti/omarchy-theme-loader.nvim"
+        "bjarneo/vantablack.nvim",
+        priority = 1000,
+        lazy = true,
+    },
+    {
+        "EskelinenAntti/omarchy-theme-loader.nvim",
+        opts = {
+            themes = {
+                ["vantablack"] = {
+                    colorscheme = "vantablack"
+                },
+                ["nord"] = {
+                    colorscheme = "nordic"
+                },
+            }
+        }
     },
 }
