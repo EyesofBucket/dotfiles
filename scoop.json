@@ -1,0 +1,115 @@
+{
+  "buckets": [
+    {
+      "Name": "main",
+      "Source": "https://github.com/ScoopInstaller/Main",
+      "Updated": "2026-05-04T20:07:06-05:00",
+      "Manifests": 1516
+    },
+    {
+      "Name": "extras",
+      "Source": "https://github.com/ScoopInstaller/Extras",
+      "Updated": "2026-05-04T20:07:21-05:00",
+      "Manifests": 2305
+    },
+    {
+      "Name": "tmuxpanel",
+      "Source": "https://github.com/marlocarlo/scoop-tmuxpanel",
+      "Updated": "2026-03-04T09:44:18-06:00",
+      "Manifests": 2
+    }
+  ],
+  "apps": [
+    {
+      "Name": "7zip",
+      "Info": "",
+      "Source": "main",
+      "Version": "26.00",
+      "Updated": "2026-04-13T16:18:34.8603596-05:00"
+    },
+    {
+      "Name": "diffutils",
+      "Info": "",
+      "Source": "main",
+      "Version": "3.6",
+      "Updated": "2026-05-04T23:55:33.6048787-05:00"
+    },
+    {
+      "Name": "eza",
+      "Info": "",
+      "Source": "main",
+      "Version": "0.23.4",
+      "Updated": "2026-05-04T13:36:07.1254047-05:00"
+    },
+    {
+      "Name": "fzf",
+      "Info": "",
+      "Source": "main",
+      "Version": "0.71.0",
+      "Updated": "2026-04-14T15:00:11.3586345-05:00"
+    },
+    {
+      "Name": "git",
+      "Info": "",
+      "Source": "main",
+      "Version": "2.53.0.2",
+      "Updated": "2026-04-13T16:18:44.4135391-05:00"
+    },
+    {
+      "Name": "innounp",
+      "Info": "",
+      "Source": "main",
+      "Version": "2.67.7",
+      "Updated": "2026-04-21T12:13:19.8694491-05:00"
+    },
+    {
+      "Name": "jq",
+      "Info": "",
+      "Source": "main",
+      "Version": "1.8.1",
+      "Updated": "2026-04-13T16:37:07.5528663-05:00"
+    },
+    {
+      "Name": "neovim",
+      "Info": "",
+      "Source": "main",
+      "Version": "0.12.1",
+      "Updated": "2026-04-13T16:37:07.3501744-05:00"
+    },
+    {
+      "Name": "psmux",
+      "Info": "",
+      "Source": "main",
+      "Version": "3.3.3",
+      "Updated": "2026-04-24T10:53:14.2812707-05:00"
+    },
+    {
+      "Name": "pwsh",
+      "Info": "",
+      "Source": "main",
+      "Version": "7.6.0",
+      "Updated": "2026-04-13T16:37:11.5580805-05:00"
+    },
+    {
+      "Name": "starship",
+      "Info": "",
+      "Source": "main",
+      "Version": "1.24.2",
+      "Updated": "2026-04-13T16:37:04.3481205-05:00"
+    },
+    {
+      "Name": "tmuxpanel",
+      "Info": "",
+      "Source": "tmuxpanel",
+      "Version": "0.1.1",
+      "Updated": "2026-05-04T12:02:11.0922353-05:00"
+    },
+    {
+      "Name": "tree-sitter",
+      "Info": "",
+      "Source": "main",
+      "Version": "0.26.8",
+      "Updated": "2026-05-04T11:33:50.3871246-05:00"
+    }
+  ]
+}

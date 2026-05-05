@@ -1,20 +1,39 @@
-# EyesofBucket's Config Files
+# EyesofBucket's Dotfiles
 ![GitHub issues](https://img.shields.io/github/issues/EyesofBucket/configs) ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/EyesofBucket/configs) ![GitHub last commit](https://img.shields.io/github/last-commit/EyesofBucket/configs) ![GitHub Workflow Status (with branch)](https://img.shields.io/github/actions/workflow/status/EyesofBucket/configs/main.yml?branch=main&label=main) ![GitHub Workflow Status (with branch)](https://img.shields.io/github/actions/workflow/status/EyesofBucket/configs/main.yml?branch=test&label=test)
 
-Designed to be a quick and easy way to set up my ideal linux user environment, including my preferred shell, themes, plugins, and aliases.  Gone are the days of copying and pasting .config directories, of trying to figure out how to get that one vim plugin working.  Just run the setup script and enjoy a perfectly configured profile...
-
-...Or at least for now.  I'm always looking for new ways to optimize my workflow, and as such this repo is ever-changing. Not to worry, though! most updates can be applied by simply using the update script.  The update script excludes installers and downloads and focuses primarily on config files stored in this repo.
+Dotfiles repo for Linux, Windows, and MacOS, in that order. Utilizes `stow`,
+`nix`, `bash`, and `powershell` for deployment.
 
 ## Setup
 ### Linux
-```
-git clone https://github.com/eyesofBucket/configs ~/bvkt
-cd ~/bvkt
-./setup.sh
-```
+1. Install `zsh` and `curl` using the system's package manager
+2. Run the following:
+   ```bash
+   # Clone repo
+   git clone https://github.com/eyesofBucket/configs ~/bvkt
+   cd ~/bvkt
+
+   # Run setup script
+   ./setup.sh
+   ```
 
 ### Windows 
-```
-git clone https://github.com/eyesofBucket/configs $Env:LOCALAPPDATA\bvkt
-cp $Env:LOCALAPPDATA\bvkt\profiles\profile.ps1 ~\Documents\Powershell
-```
+
+1. Install Visual Studio (Desktop development with C++)
+2. Run the following:
+   ```powershell
+   # Install Scoop
+   Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+   Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
+   
+   # Install base apps
+   scoop install 7zip git
+   
+   # Clone repo and install the rest of the scoop apps
+   git clone https://github.com/eyesofBucket/configs $Env:LOCALAPPDATA\bvkt
+   scoop import $Env:LOCALAPPDATA\bvkt\scoop.json
+   
+   # Install profile
+   mkdir $Env:USERPROFILE\Documents\PowerShell
+   cp $Env:LOCALAPPDATA\bvkt\profile.ps1 $Env:USERPROFILE\Documents\PowerShell
+   ```

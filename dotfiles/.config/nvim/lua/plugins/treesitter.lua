@@ -32,6 +32,7 @@ return {
                 "markdown_inline",
                 "nix",
                 "passwd",
+                "powershell",
                 "python",
                 "query",
                 "ssh_config",
