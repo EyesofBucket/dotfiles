@@ -18,7 +18,7 @@ Function Invoke-PSMuxSession {
         Name = $LocationItem.Name -replace '\.', '_'
         Path = $LocationItem.FullName
     }
-    if (! $(tmux has-session -t $Project.Name $$ $True || $False)) {
+    if (! $(tmux has-session -t $Project.Name && $True || $False)) {
         [Environment]::SetEnvironmentVariable('PSMUX_SESSION', [NullString]::Value)
         tmux new-session -d -s $Project.Name -c $Project.Path
         tmux new-window -t $Project.Name -c $Project.Path -n 'neovim' 'nvim .; pwsh'
