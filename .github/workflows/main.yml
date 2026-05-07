@@ -12,10 +12,14 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v3
 
       - name: ShellCheck
         uses: ludeeus/action-shellcheck@2.0.0
-        with:
-          severity: error
-          ignore_paths: dotfiles
+#        with:
+#          severity: error
+#          ignore_paths: dotfiles
+
+      - name: Luacheck linter
+        uses: lunarmodules/luacheck@v1
