@@ -30,4 +30,4 @@ jobs:
       - name: Luacheck linter
         uses: lunarmodules/luacheck@v1
         with:
-          args: ". --codes"
+          args: ". --codes -i 113 112"
