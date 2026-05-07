@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  lint:
+  shellcheck:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -19,11 +19,15 @@ jobs:
         uses: ludeeus/action-shellcheck@2.0.0
         with:
           format: tty
-          severity: error
           check_together: 'yes'
 
+  luacheck:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
       - name: Luacheck linter
-        if: always()
         uses: lunarmodules/luacheck@v1
         with:
           args: . -i "mutating non-standard global variable vim" "accessing undefined variable vim"
