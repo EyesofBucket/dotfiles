@@ -1,12 +1,47 @@
 #!/usr/bin/env bash
 
-[[ -n "$TMUX" ]] && change="switch-client" || change="attach-session"
+POSITIONAL_ARGS=()
+
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        -u|--unstaged)
+            UNSTAGED=YES
+            shift
+            ;;
+        -h|--help)
+            echo "Usage: tmux-sessionizer [-u | --unstaged] | <path>"
+            shift
+            ;;
+        -*)
+            echo "Unknown option $1" >&2
+            exit 1
+            ;;
+        *)
+            POSITIONAL_ARGS+=("$1")
+            shift
+            ;;
+    esac
+done
+
+set -- "${POSITIONAL_ARGS[@]}"
 
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    options="$(find $(echo $BVKT_PROJECT_DIRS | tr -s ';' ' ') -mindepth 1 -maxdepth 1 -type d -not -path '*/.*' | tr -s '\n' ';');$BVKT_PROJECTS"
-    selected=$(echo $options | tr -s ';' '\n' | fzf --preview "eza --icons --git --git-repos -gTl --color=always {}")
+    projectdirs=$(find ${BVKT_PROJECT_DIRS//;/ } -mindepth 1 -maxdepth 1 -type d -not -path '*/.*' 2>/dev/null)
+    projects=$(find ${BVKT_PROJECTS//;/ } -maxdepth 0 -type d 2>/dev/null)
+    options=$(echo -en "$projectdirs\n$projects")
+    echo -n $options
+
+    if [[ -n $UNSTAGED ]]; then
+        options_unfiltered=$options
+        options=$(for i in $options_unfiltered; do
+            [[ $(git -C "$i" status --porcelain) ]] && echo "$i"
+        done)
+        selected=$(echo "$options" | fzf --tmux center,80%,border-native --preview "git -C {} remote get-url origin; eza --icons --git -gTlaI .git --color=always {}")
+    else
+        selected=$(echo "$options" | fzf --tmux center,80%,border-native --preview "eza --icons --git -gTlaI .git --color=always {}")
+    fi
 fi
 
 if [[ -z $selected ]]; then
@@ -15,9 +50,9 @@ fi
 
 selected_name=$(basename "$selected" | tr . _)
 
-if ! tmux has-session -t="$selected_name" 2> /dev/null; then
+if ! tmux has-session -t="$selected_name" 2>/dev/null; then
     tmux new-session -ds "$selected_name" -c "$selected"
     tmux new-window -t "${selected_name}:" -c "$selected" -n 'neovim' 'nvim .; zsh'
 fi
 
-tmux "$change" -t "$selected_name"
+tmux "$([[ -n "$TMUX" ]] && echo switch-client || echo attach-session)" -t "$selected_name"

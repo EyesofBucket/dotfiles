@@ -3,5 +3,15 @@ return {
     dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
     ---@module 'render-markdown'
     ---@type render.md.UserConfig
-    opts = {},
+    opts = {
+        heading = {
+            width = "block",
+            min_width = 81,
+        },
+        code = {
+            border = "thick",
+            width = "block",
+            min_width = 81,
+        },
+    },
 }

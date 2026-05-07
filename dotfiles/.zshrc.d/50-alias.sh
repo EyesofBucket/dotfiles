@@ -37,23 +37,23 @@ alias pubip='curl ifconfig.io'
 function spwn() { "$@" & disown; }
 
 # Debian
-if command -v apt >/dev/null 2>&1
+if command -v apt >/dev/null
 then
     alias update='sudo apt update && sudo apt upgrade -y'
 
 # Fedora
-elif command -v yum >/dev/null 2>&1
+elif command -v yum >/dev/null
 then
     alias update='sudo yum update -y'
 
 # Arch
-elif command -v pacman >/dev/null 2>&1
+elif command -v pacman >/dev/null
 then
     alias update='sudo pacman -Syu'
 fi
 
 # podman
-if command -v podman >/dev/null 2>&1
+if command -v podman >/dev/null
 then
     alias pm='podman'
     alias pml='podman logs'
@@ -102,7 +102,7 @@ then
 fi
 
 # podman-compose
-if command -v podman-compose >/dev/null 2>&1
+if command -v podman-compose >/dev/null
 then
     alias pc='podman-compose'
     alias pcu='podman-compose up -d'
@@ -119,7 +119,7 @@ then
 fi
 
 # docker
-if command -v docker >/dev/null 2>&1
+if command -v docker >/dev/null
 then
     alias dk='docker'
     alias dl='docker logs'
@@ -132,10 +132,26 @@ then
     alias dpa='docker ps --format '\''table {{.Names}}\t{{.Status}}\t{{.Size}}\t{{.Networks}}\t{{.Ports}}\t{{.Image}}'\'' -a | (read -r; printf "%s\n" "$REPLY"; sort)'
 
     alias drm='docker rm'
+
     # Removes all stopped containers
-    alias drma='echo -n "Deleting all stopped containers. Are you sure? [y/N]: ";read -k 1 -r x;echo;if [[ $x =~ ^[Yy]$ ]];then;docker ps -a --format "{{.ID}}" | while read l;do;docker rm $l;done;fi'
+    function drma() {
+        echo -n "Deleting all stopped containers. Are you sure? [y/N]: "
+        read -k 1 -r x
+        echo
+        [[ $x =~ ^[Yy]$ ]] && for i in $(docker ps -a --format "{{.ID}}"); do
+            docker rm "$i"
+        done
+    }
+
     # Removes ALL containers
-    alias drmA='echo -n "Deleting ALL containers. Are you sure? [y/N]: ";read -k 1 -r x;echo;if [[ $x =~ ^[Yy]$ ]];then;docker ps -a --format "{{.ID}}" | while read l;do;docker rm -f $l;done;fi'
+    function drmA() {
+        echo -n "Deleting all stopped containers. Are you sure? [y/N]: "
+        read -k 1 -r x
+        echo
+        [[ $x =~ ^[Yy]$ ]] && for i in $(docker ps -a --format "{{.ID}}"); do
+            docker rm -f "$i"
+        done
+    }
 
     alias din='docker inspect'
     alias dstart='docker start'
@@ -157,7 +173,7 @@ then
 fi
 
 # docker-compose
-if command -v docker-compose >/dev/null 2>&1
+if command -v docker-compose >/dev/null
 then
     alias dc='docker-compose'
     alias dcu='docker-compose up -d'
@@ -167,7 +183,7 @@ then
 fi
 
 # firewall-cmd
-if command -v firewall-cmd >/dev/null 2>&1
+if command -v firewall-cmd >/dev/null
 then
     alias fw='sudo firewall-cmd'
     alias fws='sudo firewall-cmd --state'
@@ -188,7 +204,7 @@ then
 fi
 
 # iwctl
-if command -v iwctl >/dev/null 2>&1
+if command -v iwctl >/dev/null
 then
     alias iwc='iwctl station wlan0 connect'
     alias iwch='iwctl station wlan0 connect-hidden'
@@ -196,7 +212,7 @@ then
     alias iws='iwctl station wlan0 scan && iwctl station wlan0 get-networks'
 fi
 
-if command -v eza >/dev/null 2>&1
+if command -v eza >/dev/null
 then
     alias ls='eza --icons --git'
     alias ll='eza --icons --git --git-repos -lg'
@@ -204,70 +220,78 @@ then
     alias lt='eza --icons --git --git-repos -gT'
 fi
 
-if command -v epy >/dev/null 2>&1
+if command -v epy >/dev/null
 then
     alias epy='pushd $HOME/Books; epy "$(fzf)"; popd'
 fi
 
-if command -v kubectl >/dev/null 2>&1
+if command -v kubectl >/dev/null
 then
     alias k='kubectl'
-    alias kl='k logs'
-    alias kx='k exec'
-    alias kxi='k exec -it'
-    alias ka='k apply -f'
+    alias kl='kubectl logs'
+    alias klf='kubectl logs -f'
+    alias kx='kubectl exec'
+    alias kxi='kubectl exec -it'
+    alias ka='kubectl apply -f'
 
-    alias kg='k get'
-    alias kgn='kg nodes'
-    alias kgp='kg pods'
-    alias kgd='kg deployments'
-    alias kgc='kg configmaps'
-    alias kgsv='kg services'
-    alias kgsc='kg secrets'
-    alias kgi='kg ingresses'
-    alias kgpv='kg pv'
-    alias kgpvc='kg pvc'
+    alias kg='kubectl get'
+    alias kgn='kubectl get nodes'
+    alias kgp='kubectl get pods'
+    alias kgd='kubectl get deployments'
+    alias kgc='kubectl get configmaps'
+    alias kgsv='kubectl get services'
+    alias kgsc='kubectl get secrets'
+    alias kgi='kubectl get ingresses'
+    alias kgpv='kubectl get pv'
+    alias kgpvc='kubectl get pvc'
 
-    alias ke='k edit'
-    alias ken='ke nodes'
-    alias kep='ke pods'
-    alias ked='ke deployments'
-    alias kec='ke configmaps'
-    alias kesv='ke services'
-    alias kesc='ke secrets'
-    alias kei='ke ingresses'
-    alias kepv='ke pv'
-    alias kepvc='ke pvc'
+    alias ke='kubectl edit'
+    alias ken='kubectl edit nodes'
+    alias kep='kubectl edit pods'
+    alias ked='kubectl edit deployments'
+    alias kec='kubectl edit configmaps'
+    alias kesv='kubectl edit services'
+    alias kesc='kubectl edit secrets'
+    alias kei='kubectl edit ingresses'
+    alias kepv='kubectl edit pv'
+    alias kepvc='kubectl edit pvc'
 
-    alias kd='k describe'
-    alias kdn='kd nodes'
-    alias kdp='kd pods'
-    alias kdd='kd deployments'
-    alias kdc='kd configmaps'
-    alias kdsv='kd services'
-    alias kdsc='kd secrets'
-    alias kdi='kd ingresses'
-    alias kdpv='kd pv'
-    alias kdpvc='kd pvc'
+    alias kd='kubectl describe'
+    alias kdn='kubectl describe nodes'
+    alias kdp='kubectl describe pods'
+    alias kdd='kubectl describe deployments'
+    alias kdc='kubectl describe configmaps'
+    alias kdsv='kubectl describe services'
+    alias kdsc='kubectl describe secrets'
+    alias kdi='kubectl describe ingresses'
+    alias kdpv='kubectl describe pv'
+    alias kdpvc='kubectl describe pvc'
 
-    alias krm='k delete'
-    alias krmn='krm nodes'
-    alias krmp='krm pods'
-    alias krmpf='krm pods --force'
-    alias krmd='krm deployments'
-    alias krmc='krm configmaps'
-    alias krmsv='krm services'
-    alias krmsc='krm secrets'
-    alias krmi='krm ingresses'
-    alias krmpv='krm pv'
-    alias krmpvc='krm pvc'
+    alias krm='kubectl delete'
+    alias krmn='kubectl delete nodes'
+    alias krmp='kubectl delete pods'
+    alias krmpf='kubectl delete pods --force'
+    alias krmd='kubectl delete deployments'
+    alias krmc='kubectl delete configmaps'
+    alias krmsv='kubectl delete services'
+    alias krmsc='kubectl delete secrets'
+    alias krmi='kubectl delete ingresses'
+    alias krmpv='kubectl delete pv'
+    alias krmpvc='kubectl delete pvc'
 
-    alias kc='k config'
-    alias kcc='kc use-context $(kc get-contexts -o name | fzf)'
-    alias kcn='kc set-context --current --namespace=$(kg namespaces -o json | jq ".items[].metadata.name" -r | fzf)'
+    alias kc='kubectl config'
+    function kcc() {
+        KUBE_CONTEXT_SELECTION=$(kubectl config get-contexts -o name | fzf)
+        [ -z "$KUBE_CONTEXT_SELECTION" ] || kubectl config use-context "$KUBE_CONTEXT_SELECTION"
+    }
+    function kcn() {
+        kubectl version >/dev/null || return 1
+        KUBE_NAMESPACE_SELECTION=$(kubectl get namespaces -o json | jq ".items[].metadata.name" -r | fzf)
+        [ -z "$KUBE_NAMESPACE_SELECTION" ] || kubectl config set-context --current --namespace="$KUBE_NAMESPACE_SELECTION"
+    }
 fi
 
-if command -v helm >/dev/null 2>&1
+if command -v helm >/dev/null
 then
     alias hi='helm upgrade --install'
     alias hid='helm upgrade --install --dry-run'
@@ -278,12 +302,14 @@ then
     alias hga='helm get all'
 fi
 
-if command -v kubecolor >/dev/null 2>&1
+if command -v kubecolor >/dev/null
 then
     alias kubectl='kubecolor'
 fi
 
-if command -v spotify_player >/dev/null 2>&1
+if command -v spotify_player >/dev/null
 then
     alias spt='spotify_player'
 fi
+
+alias dnsedit='nvim /etc/dnsmasq.conf && sudo systemctl restart dnsmasq'
