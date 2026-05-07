@@ -3,7 +3,7 @@ return {
         "ribru17/bamboo.nvim",
         priority = 1000,
         lazy = true,
-        
+
         config = function()
             require('bamboo').setup {
                 style = 'multiplex',
