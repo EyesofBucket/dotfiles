@@ -20,7 +20,7 @@ jobs:
         with:
           scandir: ./dotfiles/.zshrc.d
           additional_files: ./dotfiles/.zshrc
-          SHELLCHECK_OPTS: -e SC1090
+          SHELLCHECK_OPTS: -e SC2148
           check_together: 'yes'
           format: tty
 
