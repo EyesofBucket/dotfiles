@@ -18,8 +18,21 @@ jobs:
       - name: ShellCheck
         uses: ludeeus/action-shellcheck@2.0.0
         with:
-          format: tty
+          scandir: ./dotfiles/.zshrc.d
+          additional_files: ./dotfiles/.zshrc
+          SHELLCHECK_OPTS: -e SC1090
           check_together: 'yes'
+          format: tty
+
+      - name: ShellCheck
+        if: always()
+        uses: ludeeus/action-shellcheck@2.0.0
+        with:
+          ignore_paths: >-
+            ./dotfiles/.zshrc.d
+            ./dotfiles/.zshrc
+          check_together: 'yes'
+          format: tty
 
   luacheck:
     runs-on: ubuntu-latest
