@@ -25,3 +25,5 @@ jobs:
       - name: Luacheck linter
         if: always()
         uses: lunarmodules/luacheck@v1
+        with:
+          args: . -i "mutating non-standard global variable vim" "accessing undefined variable vim"
