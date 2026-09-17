@@ -147,5 +147,30 @@ return {
                 prefix = "",
             },
         })
+    
+        vim.lsp.config('yamlls', {
+            on_init = function(client)
+                client.server_capabilities.documentFormattingProvider = true
+            end,
+            settings = {
+                redhat = {
+                    telemetry = {
+                        enabled = false,
+                    },
+                },
+                yaml = {
+                    format = {
+                        enable = true,
+                    },
+                    schemaStore = {
+                        enable = true,
+                    },
+                    schemas = {
+                        ["https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json?ref_type=heads"] = { "/.gitlab-ci.yml", "/.gitlab/ci/*" },
+                    },
+                    customTags = { "!reference sequence" },
+                },
+            },
+        })
     end,
 }

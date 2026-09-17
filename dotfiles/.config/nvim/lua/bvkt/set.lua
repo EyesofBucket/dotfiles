@@ -37,3 +37,10 @@ vim.opt.mouse = ""
 vim.opt.showmode = false
 
 vim.o.winborder = "rounded"
+
+vim.filetype.add({
+  pattern = {
+    ['%.gitlab%-ci%.ya?ml'] = 'yaml.gitlab',
+    ['%.gitlab/ci/.*%.ya?ml'] = 'yaml.gitlab',
+  }
+})

@@ -70,7 +70,7 @@ else
 fi
 
 echo -e "${INFO}Installing packages via nix..."
-nix-env -iA nixpkgs.my-packages
+nix-env -iA nixpkgs.bvkt-base
 
 echo -e "${INFO}Installing tpm..."
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm

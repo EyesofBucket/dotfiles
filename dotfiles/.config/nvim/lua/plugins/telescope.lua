@@ -4,6 +4,23 @@ return {
         'nvim-lua/plenary.nvim',
         { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
     },
+    config = function()
+        require('telescope').setup {
+            defaults = {
+                file_ignore_patterns = { "^.git/" },
+            },
+            pickers = {
+                live_grep = {
+                    additional_args = {
+                        "--hidden", "-g", "!.git",
+                    },
+                },
+                find_files = {
+                    hidden = true
+                },
+            },
+        }
+    end,
     keys = {
         {
             "<leader>pf",
@@ -25,6 +42,13 @@ return {
                 require('telescope.builtin').git_files()
             end,
             desc = "Telescope: Git"
+        },
+        {
+            "<leader>pt",
+            function()
+                require('telescope.builtin').treesitter()
+            end,
+            desc = "Telescope: Treesitter"
         },
         {
             "<leader>hh",

@@ -1,4 +1,5 @@
 alias history='history 1'
+alias ztime='time zsh -ic exit'
 
 alias md='mkdir -p'
 alias rd='rmdir'
@@ -313,3 +314,5 @@ then
 fi
 
 alias dnsedit='nvim /etc/dnsmasq.conf && sudo systemctl restart dnsmasq'
+
+alias cdbase='cd "$(git rev-parse --show-toplevel)"'
