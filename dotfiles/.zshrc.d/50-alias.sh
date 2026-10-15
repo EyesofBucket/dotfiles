@@ -316,3 +316,15 @@ fi
 alias dnsedit='nvim /etc/dnsmasq.conf && sudo systemctl restart dnsmasq'
 
 alias cdbase='cd "$(git rev-parse --show-toplevel)"'
+
+function new-branch() {
+    : "${NEW_BRANCH:=${1:?Need to specify branch name}}"
+    : "${MR_PLATFORM:=${2}}"
+    DEFAULT_BRANCH=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's|refs/remotes/origin/||')
+    git fetch origin "$DEFAULT_BRANCH:$DEFAULT_BRANCH"
+    git switch -c "$NEW_BRANCH" "$DEFAULT_BRANCH"
+    git push --set-upstream origin "$NEW_BRANCH"
+    if [[ "$MR_PLATFORM" == "gl" ]]; then
+        glab mr create --draft -y -d "" -t "$NEW_BRANCH"
+    fi
+}

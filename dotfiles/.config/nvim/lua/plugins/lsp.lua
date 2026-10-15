@@ -147,7 +147,7 @@ return {
                 prefix = "",
             },
         })
-    
+
         vim.lsp.config('yamlls', {
             on_init = function(client)
                 client.server_capabilities.documentFormattingProvider = true

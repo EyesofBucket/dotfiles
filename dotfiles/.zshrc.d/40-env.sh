@@ -11,6 +11,7 @@ addToPathFront() {
 }
 
 addToPathFront "$HOME/.local/scripts"
+addToPathFront "$HOME/.local/bin"
 
 if command -v nvim >/dev/null
 then

@@ -7,6 +7,7 @@ zi snippet OMZP::dotenv
 
 zinit lucid for \
     zsh-users/zsh-autosuggestions
+
 zinit lucid wait for \
     zdharma-continuum/fast-syntax-highlighting \
     Aloxaf/fzf-tab \

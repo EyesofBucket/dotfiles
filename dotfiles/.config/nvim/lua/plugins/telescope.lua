@@ -78,7 +78,7 @@ return {
                 local open_in_right_split = function(prompt_bufnr)
                     local selection = require('telescope.actions.state').get_selected_entry()
                     require('telescope.actions').close(prompt_bufnr)
-                    vim.cmd.help(selection.value)
+                    vim.cmd.Man(selection.value)
                     vim.cmd.wincmd('L')
                 end
 
