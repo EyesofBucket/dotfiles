@@ -26,7 +26,18 @@ return {
             lualine_a = {'mode'},
             lualine_b = {'branch', 'diff', 'diagnostics'},
             lualine_c = {'filename'},
-            lualine_x = {'encoding', 'fileformat', 'filetype'},
+            lualine_x = {
+--                {
+--                    -- Connected opencode server and its status
+--                    function()
+--                        return require('opencode').statusline()
+--                    end,
+--                    cond = function()
+--                        return package.loaded['opencode'] ~= nil
+--                    end,
+--                },
+                'lsp_status', 'encoding', 'fileformat', 'filetype'
+            },
             lualine_y = {'progress'},
             lualine_z = {'location'}
         },

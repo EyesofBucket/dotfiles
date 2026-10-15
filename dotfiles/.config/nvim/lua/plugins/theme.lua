@@ -1,6 +1,9 @@
 return {
     "catppuccin/nvim",
     name = "catppuccin",
+    dependencies = {
+        "EskelinenAntti/omarchy-theme.nvim",
+    },
     lazy = false,
     priority = 1000,
     opts = {
@@ -15,6 +18,12 @@ return {
         end
     },
     init = function()
-        vim.cmd.colorscheme "catppuccin"
+        if (require("omarchy-theme.environment").is_omarchy()) then
+            vim.cmd.colorscheme("omarchy")
+        else
+            vim.cmd.colorscheme("catppuccin-nvim")
+        end
+        vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+        vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
     end,
 }

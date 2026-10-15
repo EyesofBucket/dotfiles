@@ -18,5 +18,9 @@ require("lazy").setup(
         ui = {
             border = "rounded",
         },
+        change_detection = {
+            enabled = false,
+            notfiy = false,
+        }
     }
 )

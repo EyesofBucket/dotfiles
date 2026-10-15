@@ -12,6 +12,7 @@ return {
       { "f", group = "Fun", },
       { "g", group = "Git", },
       { "h", group = "Help", },
+      { "o", group = "Opencode", },
       { "p", group = "Panes", },
       { "s", group = "Suda", },
       { "u", group = "Undotree", },

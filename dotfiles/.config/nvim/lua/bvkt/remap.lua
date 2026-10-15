@@ -11,8 +11,7 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "n", "nzzzv")
 
-vim.keymap.set("x", "<leader>p", "\"_dp", { desc = "put (no buffer overwrite)" })
-vim.keymap.set("x", "<leader>P", "\"_dP", { desc = "PUT (no buffer overwrite)" })
+vim.keymap.set("x", "<leader>p", "\"_dP", { desc = "put (no buffer overwrite)" })
 
 vim.keymap.set("n", "<leader>y", "\"+y")
 vim.keymap.set("v", "<leader>y", "\"+y")
@@ -37,3 +36,33 @@ vim.keymap.set("v", "<leader>(", "<esc>`>a)<esc>`<i(<esc>")
 vim.keymap.set("v", "<leader><", "<esc>`>a><esc>`<i<<esc>")
 vim.keymap.set("v", "<leader>'", "<esc>`>a'<esc>`<i'<esc>")
 vim.keymap.set("v", "<leader>\"", "<esc>`>a\"<esc>`<i\"<esc>")
+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "man",
+    callback = function()
+        vim.schedule(function()
+            vim.keymap.set(
+                "n",
+                "<leader>go",
+                "<CMD>lua require'man'.show_toc()<CR><CMD>wincmd H<CR><CMD>vert res 40<CR><CMD>se nowrap<CR>",
+                { buffer = true, desc = "Open Manpage TOC" }
+            )
+        end)
+    end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "qf",
+    callback = function()
+        vim.schedule(function()
+            vim.keymap.set(
+                "n",
+                "<leader>go",
+                "<CMD>q<CR>",
+                { buffer = true, desc = "Close Manpage TOC" }
+            )
+        end)
+    end,
+})
+
+vim.keymap.set("n", "<leader>gc", "<CMD>silent !glab-ci dashboard<CR>")

@@ -1,48 +1,46 @@
 name: CI
-
-# Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
-    branches: [ "main", "test" ]
-  pull_request:
-    branches: [ "main", "test" ]
+    branches: [ "main" ]
 
-  # Allows you to run this workflow manually from the Actions tab
+  pull_request:
+    branches: [ "main" ]
+
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
+  shellcheck:
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
-
-      - name: Setup workspace
-        run: |
-          sudo apt install zsh curl wget vim stow
-          cd $GITHUB_WORKSPACE
-          chmod a+x ./*.sh
-
-      - name: Run setup.sh
-        run: ./setup.sh
-
-      - name: Evaluate the environment
-        run: |
-          zsh ~/.zshrc
-          vim --not-a-term -c "PlugStatus" -c "%w /tmp/vim.log" -c "qa" >/dev/null
-          echo Vim plugins:
-          cat /tmp/vim.log
+      - name: Checkout
+        uses: actions/checkout@v3
 
       - name: ShellCheck
-        # You may pin to the exact commit or the version.
-        # uses: ludeeus/action-shellcheck@00cae500b08a931fb5698e11e79bfbd38e612a38
-        uses: ludeeus/action-shellcheck@2.0.0
+        uses: ludeeus/action-shellcheck@master
         with:
-          severity: error
-          ignore_paths: dotfiles
+          scandir: ./dotfiles/.zshrc.d
+          additional_files: ./dotfiles/.zshrc
+          SHELLCHECK_OPTS: -e SC2148
+          check_together: 'yes'
+          format: tty
+
+      - name: ShellCheck
+        if: always()
+        uses: ludeeus/action-shellcheck@master
+        with:
+          ignore_paths: >-
+            ./dotfiles/.zshrc.d
+            ./dotfiles/.zshrc
+          check_together: 'yes'
+          format: tty
+
+  luacheck:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Luacheck linter
+        uses: lunarmodules/luacheck@v1
+        with:
+          args: ". --codes -i 11./vim"
